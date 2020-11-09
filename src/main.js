@@ -13,8 +13,10 @@ import Menubar from 'primevue/menubar';
 import Card from "primevue/card"
 import InputText from 'primevue/inputtext';
 import TieredMenu from 'primevue/tieredmenu';
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
 
-import 'primevue/resources/themes/saga-blue/theme.css';
+import '@/assets/css/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
@@ -28,6 +30,8 @@ app.component('Menubar', Menubar);
 app.component('Card', Card);
 app.component('InputText', InputText);
 app.component('TieredMenu', TieredMenu);
+app.component('TabView', TabView);
+app.component('TabPanel', TabPanel);
 
 app.use(Highlight);
 

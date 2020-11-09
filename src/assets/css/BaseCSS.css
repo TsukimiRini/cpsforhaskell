@@ -25,3 +25,12 @@ code {
     font-family: consolos;
     font-size: 15px;
 }
+
+/* button */
+.info-button {
+    color: #000000 !important;
+    background: #ffffff !important;
+    border: 1px solid #bfbfbf !important;
+    padding: 5px 5px 5px 5px !important;
+    font-size: 12px !important;
+}
