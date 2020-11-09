@@ -1,37 +1,12 @@
 <template>
 <TheHeader>CPSForHaskell</TheHeader>
-<HomePagePanel></HomePagePanel>
+<router-view></router-view>
 </template>
 
 <script>
 import "./assets/css/BaseCSS.css"
-import {
-    reactive,
-    watch,
-    computed
-} from 'vue'
 
-export default {
-    setup() {
-        const state = reactive({
-            count: 0,
-            double: computed(() => state.count * 2),
-        })
-
-        function increment() {
-            state.count++
-        }
-
-        watch(state, () => {
-            state.double = state.count * 2
-        })
-
-        return {
-            state,
-            increment,
-        }
-    },
-}
+export default {}
 </script>
 
 <style>

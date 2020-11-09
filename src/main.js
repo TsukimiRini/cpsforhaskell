@@ -2,8 +2,9 @@ import {
     createApp
 } from 'vue'
 import App from './App.vue'
-import TheHeader from './components/TheHeader.vue'
-import HomePagePanel from './components/HomePagePanel.vue'
+import Router from "./router"
+import TheHeader from './components/Base/TheHeader.vue'
+import HomePagePanel from './views/HomePagePanel.vue'
 
 import Button from 'primevue/button';
 import Menubar from 'primevue/menubar';
@@ -26,4 +27,4 @@ app.component('Card', Card);
 app.component('InputText', InputText);
 app.component('TieredMenu', TieredMenu);
 
-app.mount('#app');
+app.use(Router).mount('#app');

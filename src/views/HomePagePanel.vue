@@ -74,7 +74,7 @@
             </Card>
         </div>
     </div>
-    <div class="p-grid nested-grid">
+    <div>
         <Card class=" div-with-top-margin p-col">
             <template v-slot:content>
                 <div class="p-grid nested-grid">
@@ -124,8 +124,8 @@
 </template>
 
 <script>
-import PanelCardItem from "./PanelCardItem"
-import PanelRankingList from "./PanelRankingList"
+import PanelCardItem from "@/components/HomePage/PanelCardItem"
+import PanelRankingList from "@/components/HomePage/PanelRankingList"
 import {
     ref
 } from 'vue';
