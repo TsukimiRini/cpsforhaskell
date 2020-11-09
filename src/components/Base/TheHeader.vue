@@ -2,6 +2,7 @@
 <Menubar :model="menuItems" id="headerMenu">
     <template #start>
         <img alt="logo" src="../../assets/logo.png" height="40" class="center-block" style="margin-right:10px" />
+        CPSForHaskell
         <slot class="center-block"></slot>
     </template>
     <template #end>
@@ -27,6 +28,7 @@ export default {
             },
             {
                 label: "讨论",
+                to: "/problem"
             },
         ];
 

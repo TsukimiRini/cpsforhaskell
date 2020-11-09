@@ -15,3 +15,13 @@
 .col-flex-ele{
     flex: 1;
 }
+.navbar-title{
+    border-left:1px solid #E6E6E6;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+code {
+    font-family: consolos;
+    font-size: 15px;
+}

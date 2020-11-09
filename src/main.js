@@ -1,10 +1,12 @@
 import {
     createApp
-} from 'vue'
-import App from './App.vue'
-import Router from "./router"
-import TheHeader from './components/Base/TheHeader.vue'
-import HomePagePanel from './views/HomePagePanel.vue'
+} from 'vue';
+import App from './App.vue';
+import Router from "./router";
+import TheHeader from './components/Base/TheHeader.vue';
+import HomePagePanel from './views/HomePagePanel.vue';
+
+import Highlight from '@/tools/highlight.js';
 
 import Button from 'primevue/button';
 import Menubar from 'primevue/menubar';
@@ -26,5 +28,7 @@ app.component('Menubar', Menubar);
 app.component('Card', Card);
 app.component('InputText', InputText);
 app.component('TieredMenu', TieredMenu);
+
+app.use(Highlight);
 
 app.use(Router).mount('#app');

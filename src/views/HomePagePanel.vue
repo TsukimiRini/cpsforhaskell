@@ -1,4 +1,6 @@
 <template>
+<TheHeader></TheHeader>
+
 <div style="margin: 10px 20px 10px 20px">
     <div class="p-grid nested-grid">
         <div class="p-col-5 col-flex-container">

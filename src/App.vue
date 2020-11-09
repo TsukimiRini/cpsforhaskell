@@ -1,5 +1,4 @@
 <template>
-<TheHeader>CPSForHaskell</TheHeader>
 <router-view></router-view>
 </template>
 
