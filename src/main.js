@@ -24,6 +24,7 @@ import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
+import ScrollPanel from 'primevue/scrollpanel';
 
 // css
 import '@/assets/css/theme.css';
@@ -46,6 +47,7 @@ app.component('TabView', TabView);
 app.component('TabPanel', TabPanel);
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);
+app.component('ScrollPanel', ScrollPanel);
 
 app.use(Highlight);
 

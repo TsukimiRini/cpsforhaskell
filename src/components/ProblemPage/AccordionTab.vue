@@ -4,6 +4,9 @@
         <div class="vertical-align" @click="e => (dropDown=='true') && onclick(e)" style="cursor:pointer">
             <i :class="[icon_class, dropdown_enable_status]"></i>
             <span>{{header}}</span>
+            <IconBase icon-name="info" color="#A2A2A2">
+                <IconInfo></IconInfo>
+            </IconBase>
         </div>
 
     </div>
@@ -59,7 +62,7 @@ export default {
 .accordion-tab {
     background: white;
     border: 1px solid #dee2e6;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 }
 
 .accordion-tab-header {
