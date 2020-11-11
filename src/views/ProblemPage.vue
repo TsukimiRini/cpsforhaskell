@@ -30,6 +30,8 @@
 <div id="operate-bar">
     <TabView>
         <TabPanel header="解决方案">
+            <AccordionTab header="方案1" drop-down='true'></AccordionTab>
+            <AccordionTab header="方案1" drop-down='false'></AccordionTab>
         </TabPanel>
         <TabPanel header="测试用例">
         </TabPanel>
@@ -38,7 +40,8 @@
 </template>
 
 <script>
-import TagItem from "@/components/Base/TagItem";
+import TagItem from "@/components/Base/TagItem"
+import AccordionTab from "@/components/ProblemPage/AccordionTab.vue"
 import {
     reactive
 } from "vue";
@@ -52,11 +55,45 @@ export default {
                 def: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
                 tags: ["topic1", "topic2", "topic3"],
             },
+            solutions: [{
+                id: "S0001",
+                name: "方案1",
+                sub_prob: [{
+                    id: "S0002",
+                    name: "子问题1",
+                    abstract: "简单的说明。",
+                }, {
+                    id: "S0003",
+                    name: "子问题2",
+                    abstract: "简单的说明。",
+                }, {
+                    id: "S0004",
+                    name: "子问题3",
+                    abstract: "简单的说明。",
+                }, ]
+            }, {
+                id: "S0005",
+                name: "方案2",
+                sub_prob: [{
+                    id: "S0006",
+                    name: "子问题1",
+                    abstract: "简单的说明。",
+                }, {
+                    id: "S0007",
+                    name: "子问题2",
+                    abstract: "简单的说明。",
+                }, ]
+            }, {
+                id: "S0008",
+                name: "方案3",
+                sub_prob: []
+            }, ]
         });
 
         return {
-            TagItem,
             problem,
+            TagItem,
+            AccordionTab,
         };
     },
 };
@@ -89,9 +126,5 @@ export default {
     left: 50%;
     position: relative;
     cursor: pointer;
-}
-
-.p-tabview .p-tabview-panels {
-    padding: 0 !important;
 }
 </style>
