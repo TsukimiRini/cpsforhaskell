@@ -1,4 +1,4 @@
-# test
+# CPSForHaskell
 
 ## Project setup
 ```
