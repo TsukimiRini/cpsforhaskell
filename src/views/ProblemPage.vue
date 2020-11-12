@@ -30,9 +30,9 @@
 <div id="operate-bar">
     <TabView>
         <TabPanel header="解决方案">
-            <ScrollPanel style="width: 100%; height: 500px" class="custombar1">
+            <ScrollPanel style="width: 100%; height: 550px" class="custombar1">
                 <div v-for="(solution,idx) in problem.solutions" :key='idx'>
-                    <AccordionTab :header="solution.name" :drop-down='solution.sub_prob.length>0'></AccordionTab>
+                    <AccordionTab :header="solution.name" :drop-down='solution.sub_prob.length>0' :sub-problems='solution.sub_prob'></AccordionTab>
                 </div>
             </ScrollPanel>
 

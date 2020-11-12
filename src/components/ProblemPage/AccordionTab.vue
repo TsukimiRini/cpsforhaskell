@@ -24,7 +24,16 @@
         </div>
     </div>
     <div class="accordion-tab-content" :style="{display:content_display}">
-        <slot></slot>
+        <template v-for="(subprob,idx) in subProblems" :key="idx">
+            <SubProblemItem>
+                <template v-slot:name>
+                    {{subprob.name}}
+                </template>
+                <template v-slot:content>
+                    {{subprob.abstract}}
+                </template>
+            </SubProblemItem>
+        </template>
     </div>
 </div>
 </template>
@@ -35,12 +44,17 @@ import {
     watchEffect
 } from 'vue'
 import RankDropDown from "./RankingDropDown.vue"
+import SubProblemItem from "./SubProblemItem.vue"
 export default {
     props: {
         header: String,
         dropDown: {
             type: Boolean,
             default: true,
+        },
+        subProblems: {
+            type: Array,
+            default: () => [],
         },
     },
     setup(props) {
@@ -70,6 +84,7 @@ export default {
             RankDropDown,
             content_display,
             icons_display,
+            SubProblemItem,
         }
     },
 }
@@ -98,7 +113,7 @@ export default {
 
 .accordion-tab-content {
     display: none;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 15px 15px 15px;
 }
 
 .icon-disabled {
