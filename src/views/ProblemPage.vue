@@ -31,15 +31,9 @@
     <TabView>
         <TabPanel header="解决方案">
             <ScrollPanel style="width: 100%; height: 500px" class="custombar1">
-                <AccordionTab header="方案1" drop-down='true'></AccordionTab>
-                <AccordionTab header="方案1" drop-down='false'></AccordionTab>
-                <AccordionTab header="方案1" drop-down='true'>aaaaaaaaaaaaaaaaaaaaaaaa<br />aaaaaaaaaaaaaaaaaaaaaa<br /></AccordionTab>
-                <AccordionTab header="方案1" drop-down='true'>aaaaaaaaaaaaaaaaaaaaaaaa<br />aaaaaaaaaaaaaaaaaaaaaa<br /></AccordionTab>
-                <AccordionTab header="方案1" drop-down='true'>aaaaaaaaaaaaaaaaaaaaaaaa<br />aaaaaaaaaaaaaaaaaaaaaa<br /></AccordionTab>
-                <AccordionTab header="方案1" drop-down='true'>aaaaaaaaaaaaaaaaaaaaaaaa<br />aaaaaaaaaaaaaaaaaaaaaa<br /></AccordionTab>
-                <AccordionTab header="方案1" drop-down='true'>aaaaaaaaaaaaaaaaaaaaaaaa<br />aaaaaaaaaaaaaaaaaaaaaa<br /></AccordionTab>
-                <AccordionTab header="方案1" drop-down='true'>aaaaaaaaaaaaaaaaaaaaaaaa<br />aaaaaaaaaaaaaaaaaaaaaa<br /></AccordionTab>
-                <AccordionTab header="方案1" drop-down='true'>aaaaaaaaaaaaaaaaaaaaaaaa<br />aaaaaaaaaaaaaaaaaaaaaa<br /></AccordionTab>
+                <div v-for="(solution,idx) in problem.solutions" :key='idx'>
+                    <AccordionTab :header="solution.name" :drop-down='solution.sub_prob.length>0'></AccordionTab>
+                </div>
             </ScrollPanel>
 
         </TabPanel>
@@ -52,6 +46,7 @@
 <script>
 import TagItem from "@/components/Base/TagItem"
 import AccordionTab from "@/components/ProblemPage/AccordionTab.vue"
+import RankDropDown from "@/components/ProblemPage/RankingDropDown.vue"
 import {
     reactive
 } from "vue";
@@ -104,6 +99,7 @@ export default {
             problem,
             TagItem,
             AccordionTab,
+            RankDropDown,
         };
     },
 };
@@ -138,35 +134,3 @@ export default {
     cursor: pointer;
 }
 </style>
-
-::v-deep(.p-scrollpanel) {
-    &.custombar1 {
-        .p-scrollpanel-wrapper {
-            border-right: 9px solid var(--surface-b);
-        }
-
-        .p-scrollpanel-bar {
-            background-color: var(--primary-color);
-            opacity: 1;
-            transition: background-color .2s;
-
-            &:hover {
-                background-color: #007ad9;
-            }
-        }
-    }
-
-    &.custombar2 {
-        .p-scrollpanel-wrapper {
-            border-right: 9px solid var(--surface-b);
-            border-bottom: 9px solid var(--surface-b);
-        }
-
-        .p-scrollpanel-bar {
-            background-color: var(--surface-d);
-            border-radius: 0;
-            opacity: 1;
-            transition: background-color .2s;
-        }
-    }
-}

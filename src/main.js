@@ -10,6 +10,8 @@ import TheHeader from './components/Base/TheHeader.vue';
 // icons
 import IconBase from "@/components/Icons/IconBase.vue";
 import IconInfo from "@/components/Icons/IconInfo.vue";
+import IconFilter from "@/components/Icons/IconFilter.vue";
+import IconFavor from "@/components/Icons/IconFavor.vue";
 
 // plugins
 import Highlight from '@/tools/highlight.js';
@@ -25,6 +27,7 @@ import TabPanel from 'primevue/tabpanel';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import ScrollPanel from 'primevue/scrollpanel';
+import Dropdown from 'primevue/dropdown';
 
 // css
 import '@/assets/css/theme.css';
@@ -37,6 +40,8 @@ app.component('TheHeader', TheHeader);
 
 app.component('IconBase', IconBase);
 app.component('IconInfo', IconInfo);
+app.component('IconFilter', IconFilter);
+app.component('IconFavor', IconFavor);
 
 app.component('Button', Button);
 app.component('Menubar', Menubar);
@@ -48,6 +53,7 @@ app.component('TabPanel', TabPanel);
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);
 app.component('ScrollPanel', ScrollPanel);
+app.component('Dropdown', Dropdown);
 
 app.use(Highlight);
 

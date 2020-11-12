@@ -1,16 +1,29 @@
 <template>
 <div class="accordion-tab">
-    <div class="accordion-tab-header">
-        <div class="vertical-align" @click="e => (dropDown=='true') && onclick(e)" style="cursor:pointer">
+    <div class="accordion-tab-header" style="display:flex;justify-content:space-between;">
+        <div style="align-self: center;cursor:pointer" @click="e => dropDown && onclick(e)">
             <i :class="[icon_class, dropdown_enable_status]"></i>
             <span>{{header}}</span>
-            <IconBase icon-name="info" color="#A2A2A2">
+            <IconBase icon-name="info" icon-color="#A2A2A2">
                 <IconInfo></IconInfo>
             </IconBase>
         </div>
-
+        <div style="align-self: center;height:30px;display:flex;justify-content:space-between;">
+            <div :style="{display:icons_display}" class="align-center">
+                <IconBase icon-name="filter" icon-color="#3e3e3e">
+                    <IconFilter></IconFilter>
+                </IconBase>
+                <RankDropDown rank-object="problem"></RankDropDown>
+            </div>
+            <div class="align-center">
+                <IconBase icon-name="favor" icon-color="#3e3e3e">
+                    <IconFavor></IconFavor>
+                </IconBase>
+                <i class="pi pi-ellipsis-v"></i>
+            </div>
+        </div>
     </div>
-    <div class=" accordion-tab-content">
+    <div class="accordion-tab-content" :style="{display:content_display}">
         <slot></slot>
     </div>
 </div>
@@ -21,29 +34,30 @@ import {
     ref,
     watchEffect
 } from 'vue'
+import RankDropDown from "./RankingDropDown.vue"
 export default {
     props: {
         header: String,
         dropDown: {
-            type: String,
-            default: 'true',
-            validator: (val) => {
-                return ['true', 'false'].indexOf(val) !== -1
-            },
+            type: Boolean,
+            default: true,
         },
     },
     setup(props) {
         let icon_class = ref("pi pi-angle-right")
         let dropdown_enable_status = ref("icon-enabled")
+        let content_display = ref("none")
+        let icons_display = ref("none")
 
-        const onclick = (evt) => {
+        const onclick = () => {
             icon_class.value = icon_class.value == "pi pi-angle-right" ? "pi pi-angle-down" : "pi pi-angle-right"
-            const content_ele = evt.target.parentNode.parentNode.nextElementSibling
-            content_ele.style.display = content_ele.style.display == "none" || !content_ele.style.display ? "block" : "none"
+            content_display.value = content_display.value == "none" ? "block" : "none"
+            icons_display.value = icons_display.value == "none" ? "inline" : "none"
+            console.log("aaa")
         }
 
         watchEffect(() => {
-            if (props.dropDown == 'false') {
+            if (props.dropDown == false) {
                 dropdown_enable_status.value = "icon-disabled"
                 window.removeEventListener('click', onclick)
             }
@@ -53,6 +67,9 @@ export default {
             onclick,
             icon_class,
             dropdown_enable_status,
+            RankDropDown,
+            content_display,
+            icons_display,
         }
     },
 }
@@ -86,5 +103,13 @@ export default {
 
 .icon-disabled {
     color: #dee2e6;
+}
+
+.ele-disabled {
+    display: none;
+}
+
+.align-center {
+    align-self: center;
 }
 </style>

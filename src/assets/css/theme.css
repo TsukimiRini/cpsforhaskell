@@ -452,9 +452,13 @@
 .p-dropdown .p-dropdown-label {
   background: transparent;
   border: 0 none;
+  padding: 3px 4px 3px 4px;
+  font-size: 12px;
 }
 .p-dropdown .p-dropdown-label.p-placeholder {
   color: #6c757d;
+  padding: 3px 4px 3px 4px;
+  font-size: 12px;
 }
 .p-dropdown .p-dropdown-label:enabled:focus {
   outline: 0 none;
@@ -500,6 +504,7 @@
 }
 .p-dropdown-panel .p-dropdown-items {
   padding: 0.5rem 0;
+  font-size: 12px;
 }
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
   margin: 0;
