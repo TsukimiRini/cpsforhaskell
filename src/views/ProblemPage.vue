@@ -1,36 +1,44 @@
 <template>
-<TheHeader>
+<TheHeader id='theHeader'>
     <span class="navbar-title"> 开发模式 </span>
 </TheHeader>
 
-<div class="general-info-card">
+<div :class="cardClass">
     <div class="problem-title">
-        <span>{{ problem.info.title }}</span>
-        <span>#{{ problem.info.id }}</span>
-        <Button class="info-button" style="margin-left:5px !important;">详细信息</Button>
+        <div>
+            <span>{{ problem.info.title }}</span>
+            <span>#{{ problem.info.id }}</span>
+            <Button class="info-button" style="margin-left:5px !important;">详细信息</Button>
+        </div>
+        <div>
+            <Button class="info-button" style="margin-left:5px !important;">打包为可运行项目</Button>
+            <Button class="info-button" style="margin-left:5px !important;">关注<i class="pi pi-plus" style="fontSize:10px"></i></Button>
+        </div>
     </div>
-    <div class="context-container">
-        <span style="font-weight: bold">概要：</span>
-        <span>{{ problem.info.abstract }}</span>
-    </div>
-    <div class="context-container">
-        <span style="font-weight: bold">定义：</span>
-        <pre style="margin:0px 0px 0px 0px" v-highlight><code class="haskell" style="display: inline;padding: 5px 0px 5px 0px;background:0">{{problem.info.def}}</code></pre>
-    </div>
-    <div class="context-container">
-        <span style="font-weight:bold">标签：</span>
-        <TagItem v-for="(tag, idx) in problem.info.tags" :key="idx">{{tag}}</TagItem>
+    <div :class="{'none-display':cardToggled}">
+        <div class="context-container">
+            <span style="font-weight: bold">概要：</span>
+            <span>{{ problem.info.abstract }}</span>
+        </div>
+        <div class="context-container">
+            <span style="font-weight: bold">定义：</span>
+            <pre style="margin:0px 0px 0px 0px" v-highlight><code class="haskell" style="display: inline;padding: 5px 0px 5px 0px;background:0">{{problem.info.def}}</code></pre>
+        </div>
+        <div class="context-container">
+            <span style="font-weight:bold">标签：</span>
+            <TagItem v-for="(tag, idx) in problem.info.tags" :key="idx">{{tag}}</TagItem>
+        </div>
     </div>
 
-    <div class="icon-container">
-        <i class="pi pi-chevron-up icon-button"></i>
+    <div :class="{'id-container':!cardToggled}">
+        <i :class="iconClass" @click="toggle_up"></i>
     </div>
 </div>
 
 <div id="operate-bar">
     <TabView>
         <TabPanel header="解决方案">
-            <ScrollPanel style="width: 100%; height: 550px" class="custombar1">
+            <ScrollPanel :style="{height: scrollHeight+'px'}" class="custombar1">
                 <div v-for="(solution,idx) in problem.solutions" :key='idx'>
                     <AccordionTab :header="solution.name" :drop-down='solution.sub_prob.length>0' :sub-problems='solution.sub_prob'></AccordionTab>
                 </div>
@@ -48,7 +56,8 @@ import TagItem from "@/components/Base/TagItem"
 import AccordionTab from "@/components/ProblemPage/AccordionTab.vue"
 import RankDropDown from "@/components/ProblemPage/RankingDropDown.vue"
 import {
-    reactive
+    reactive,
+    ref,
 } from "vue";
 export default {
     setup() {
@@ -92,14 +101,72 @@ export default {
                 id: "S0008",
                 name: "方案3",
                 sub_prob: []
+            }, {
+                id: "S0009",
+                name: "方案4",
+                sub_prob: [{
+                    id: "S0010",
+                    name: "子问题1",
+                    abstract: "简单的说明。",
+                }, {
+                    id: "S0011",
+                    name: "子问题2",
+                    abstract: "简单的说明。",
+                }, {
+                    id: "S0012",
+                    name: "子问题3",
+                    abstract: "简单的说明。",
+                }, ]
             }, ]
-        });
+        })
+
+        let cardToggled = ref(false)
+
+        let cardClass = reactive({
+            'general-info-card': true,
+            'toggled-up-card': false,
+        })
+
+        let iconClass = reactive({
+            'pi': true,
+            'pi-chevron-up': true,
+            'pi-chevron-down': false,
+            'icon-button': true,
+        })
+
+        let scrollHeight = ref(0);
+        scrollHeight.value = window.innerHeight - 56 - 250 - 60;
+
+        const toggle_up = () => {
+            cardToggled.value = cardToggled.value == true ? false : true
+            cardClass['toggled-up-card'] = cardClass['toggled-up-card'] ? false : true
+            iconClass['pi-chevron-up'] = iconClass['pi-chevron-up'] ? false : true
+            iconClass['pi-chevron-down'] = iconClass['pi-chevron-down'] ? false : true
+            if (cardToggled.value) {
+                scrollHeight.value = window.innerHeight - document.getElementById('theHeader').clientHeight - 110 - 60;
+            } else {
+                scrollHeight.value = window.innerHeight - 56 - 250 - 60;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            if (cardToggled.value) {
+                scrollHeight.value = window.innerHeight - document.getElementById('theHeader').clientHeight - 110 - 60;
+            } else {
+                scrollHeight.value = window.innerHeight - 56 - 250 - 60;
+            }
+        })
 
         return {
             problem,
             TagItem,
             AccordionTab,
             RankDropDown,
+            toggle_up,
+            cardToggled,
+            cardClass,
+            iconClass,
+            scrollHeight,
         };
     },
 };
@@ -114,10 +181,20 @@ export default {
     border-bottom: solid #BBBBBB 0.1rem;
 }
 
+.toggled-up-card {
+    height: 110px;
+}
+
 .problem-title {
     font-size: 20px;
     font-weight: bold;
     margin: 10px 0px 10px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.none-display {
+    display: none;
 }
 
 .context-container {

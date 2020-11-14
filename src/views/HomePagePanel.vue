@@ -1,5 +1,5 @@
 <template>
-<TheHeader></TheHeader>
+<TheHeader id='theHeader'></TheHeader>
 
 <div style="margin: 10px 20px 10px 20px">
     <div class="p-grid nested-grid">
