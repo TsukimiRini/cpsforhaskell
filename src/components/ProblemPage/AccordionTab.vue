@@ -36,7 +36,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="accordion-tab-content" :style="{ display: content_display }">
+	</div>
+	<transition
+		name="fold"
+		@before-enter="beforeEnter"
+		@enter="enter"
+		@before-leave="beforeLeave"
+		@leave="leave"
+	>
+		<div class="accordion-tab-content" v-if="content_display">
 			<div style="margin: 0px 10px 10px 10px">
 				<div style="height: 30px">
 					<i class="pi pi-tags"></i>
@@ -58,7 +66,7 @@
 				</SubProblemItem>
 			</template>
 		</div>
-	</div>
+	</transition>
 </template>
 
 <script>
@@ -89,7 +97,7 @@ export default {
 	setup(props) {
 		let icon_class = ref("pi pi-angle-right");
 		let dropdown_enable_status = ref("icon-enabled");
-		let content_display = ref("none");
+		let content_display = ref(false);
 		let icons_display = ref("none");
 
 		const onclick = (e) => {
@@ -99,8 +107,7 @@ export default {
 					icon_class.value == "pi pi-angle-right"
 						? "pi pi-angle-down"
 						: "pi pi-angle-right";
-				content_display.value =
-					content_display.value == "none" ? "block" : "none";
+				content_display.value = content_display.value == false ? true : false;
 				icons_display.value = icons_display.value == "none" ? "inline" : "none";
 			}
 		};
@@ -112,6 +119,15 @@ export default {
 			}
 		});
 
+		const beforeEnter = (el) => {
+			el.style.height = 0;
+		};
+		const enter = (el) => {
+			el.style.height = el.scrollHeight + "px";
+		};
+		const beforeLeave = enter;
+		const leave = beforeEnter;
+
 		return {
 			onclick,
 			icon_class,
@@ -121,6 +137,10 @@ export default {
 			icons_display,
 			SubProblemItem,
 			TagItem,
+			beforeEnter,
+			enter,
+			beforeLeave,
+			leave,
 		};
 	},
 };
@@ -130,7 +150,7 @@ export default {
 .accordion-tab {
 	background: white;
 	border: 1px solid #dee2e6;
-	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
 .accordion-tab-header {
@@ -145,9 +165,19 @@ export default {
 
 .accordion-tab-title {
 	align-self: center;
+	font-weight: bold;
 }
 .accordion-tab-title:hover {
 	text-decoration: underline;
+}
+
+.accordion-tab-content {
+	background: white;
+	border: 1px solid #dee2e6;
+	border-top: none;
+	overflow: hidden;
+	transition: 0.5s ease;
+	padding: 5px 15px 15px 15px;
 }
 
 .vertical-align {
@@ -156,11 +186,6 @@ export default {
 	top: 50%;
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
-}
-
-.accordion-tab-content {
-	display: none;
-	padding: 5px 15px 15px 15px;
 }
 
 .icon-disabled {
