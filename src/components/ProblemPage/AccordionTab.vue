@@ -22,10 +22,22 @@
 					justify-content: space-between;
 				"
 			>
-				<div :style="{ display: icons_display }" class="align-center">
-					<IconBase icon-name="filter" icon-color="#3e3e3e">
-						<IconFilter></IconFilter>
-					</IconBase>
+				<div :style="{ display: icons_display }" class="align-center bar-class">
+					<span v-click-outside="closeFilter">
+						<IconBase
+							icon-name="filter"
+							icon-color="#3e3e3e"
+							@click="clickFilter"
+						>
+							<IconFilter></IconFilter>
+						</IconBase>
+						<span
+							class="filter-popover"
+							:style="{ visibility: filterPopoverShow }"
+						>
+							<FilterCard></FilterCard>
+						</span>
+					</span>
 					<RankDropDown rank-object="problem"></RankDropDown>
 				</div>
 				<div class="align-center" v-tooltip="probLikes + ' likes'">
@@ -76,6 +88,7 @@ import { ref, watchEffect } from "vue";
 import RankDropDown from "./RankingDropDown.vue";
 import SubProblemItem from "./SubProblemItem.vue";
 import TagItem from "@/components/Base/TagItem.vue";
+import FilterCard from "@/components/Base/FilterCard.vue";
 export default {
 	props: {
 		header: String,
@@ -134,6 +147,16 @@ export default {
 		const beforeLeave = enter;
 		const leave = beforeEnter;
 
+		let filterPopoverShow = ref("hidden");
+		const clickFilter = () => {
+			filterPopoverShow.value =
+				filterPopoverShow.value == "hidden" ? "visible" : "hidden";
+		};
+		const closeFilter = () => {
+			console.log("hidden");
+			filterPopoverShow.value = "hidden";
+		};
+
 		return {
 			onclick,
 			icon_class,
@@ -147,6 +170,10 @@ export default {
 			enter,
 			beforeLeave,
 			leave,
+			FilterCard,
+			filterPopoverShow,
+			clickFilter,
+			closeFilter,
 		};
 	},
 };
@@ -204,5 +231,18 @@ export default {
 
 .align-center {
 	align-self: center;
+}
+
+.filter-popover {
+	position: absolute;
+	z-index: 1000;
+	right: 140px;
+	bottom: -160px;
+	cursor: default;
+}
+
+.bar-class {
+	width: 170px;
+	height: 25px;
 }
 </style>
