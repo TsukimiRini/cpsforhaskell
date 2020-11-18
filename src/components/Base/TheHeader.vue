@@ -12,7 +12,11 @@
 			<slot class="center-block"></slot>
 		</template>
 		<template #end>
-			<div @mouseover="popupMenu" @mouseout="shutMenu" style="cursor: pointer">
+			<div
+				@mouseover="popupMenu"
+				@mouseout="shutMenu"
+				style="cursor: pointer; z-index: 2000"
+			>
 				<img
 					alt="userIcon"
 					src="../../assets/logo.png"
@@ -23,7 +27,7 @@
 					ADMIN
 				</div>
 				<i class="pi pi-angle-down center-block div-with-right-margin"></i>
-				<UserMenu id="userMenu" style="width: 150px"></UserMenu>
+				<UserMenu id="userMenu" style="width: 150px; z-index: 2000"></UserMenu>
 			</div>
 		</template>
 	</Menubar>
