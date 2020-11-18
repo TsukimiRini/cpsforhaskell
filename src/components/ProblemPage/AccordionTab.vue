@@ -3,16 +3,16 @@
 		<div
 			class="accordion-tab-header"
 			style="display: flex; justify-content: space-between"
+			@click="(e) => dropDown && onclick(e)"
 		>
-			<div
-				style="align-self: center; cursor: pointer"
-				@click="(e) => dropDown && onclick(e)"
-			>
+			<div class="accordion-tab-title">
 				<i :class="[icon_class, dropdown_enable_status]"></i>
 				<span>{{ header }}</span>
-				<IconBase icon-name="info" icon-color="#A2A2A2">
+				<!--
+                <IconBase icon-name="info" icon-color="#A2A2A2">
 					<IconInfo></IconInfo>
 				</IconBase>
+                -->
 			</div>
 			<div
 				style="
@@ -37,6 +37,16 @@
 			</div>
 		</div>
 		<div class="accordion-tab-content" :style="{ display: content_display }">
+			<div style="margin: 0px 10px 10px 10px">
+				<div style="height: 30px">
+					<i class="pi pi-tags"></i>
+					<template v-for="(tag, idx) in probTags" :key="idx">
+						<TagItem>{{ tag }}</TagItem>
+					</template>
+				</div>
+				<i class="pi pi-pencil"></i>
+				{{ probAbstract }}
+			</div>
 			<template v-for="(subprob, idx) in subProblems" :key="idx">
 				<SubProblemItem>
 					<template v-slot:name>
@@ -55,6 +65,7 @@
 import { ref, watchEffect } from "vue";
 import RankDropDown from "./RankingDropDown.vue";
 import SubProblemItem from "./SubProblemItem.vue";
+import TagItem from "@/components/Base/TagItem.vue";
 export default {
 	props: {
 		header: String,
@@ -70,6 +81,10 @@ export default {
 			type: String,
 			default: () => "",
 		},
+		probTags: {
+			type: Array,
+			default: () => [],
+		},
 	},
 	setup(props) {
 		let icon_class = ref("pi pi-angle-right");
@@ -77,15 +92,17 @@ export default {
 		let content_display = ref("none");
 		let icons_display = ref("none");
 
-		const onclick = () => {
-			icon_class.value =
-				icon_class.value == "pi pi-angle-right"
-					? "pi pi-angle-down"
-					: "pi pi-angle-right";
-			content_display.value =
-				content_display.value == "none" ? "block" : "none";
-			icons_display.value = icons_display.value == "none" ? "inline" : "none";
-			console.log("aaa");
+		const onclick = (e) => {
+			const clickedClass = e.target.className;
+			if (clickedClass == "accordion-tab-header") {
+				icon_class.value =
+					icon_class.value == "pi pi-angle-right"
+						? "pi pi-angle-down"
+						: "pi pi-angle-right";
+				content_display.value =
+					content_display.value == "none" ? "block" : "none";
+				icons_display.value = icons_display.value == "none" ? "inline" : "none";
+			}
 		};
 
 		watchEffect(() => {
@@ -103,6 +120,7 @@ export default {
 			content_display,
 			icons_display,
 			SubProblemItem,
+			TagItem,
 		};
 	},
 };
@@ -119,6 +137,17 @@ export default {
 	height: 40px;
 	position: relative;
 	padding: 0 10px 0 10px;
+	cursor: pointer;
+}
+.accordion-tab-header:hover {
+	background: #f8f9fa;
+}
+
+.accordion-tab-title {
+	align-self: center;
+}
+.accordion-tab-title:hover {
+	text-decoration: underline;
 }
 
 .vertical-align {

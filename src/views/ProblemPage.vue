@@ -56,8 +56,9 @@
 					<div v-for="(solution, idx) in problem.solutions" :key="idx">
 						<AccordionTab
 							:header="solution.name"
-							:drop-down="solution.sub_prob.length > 0"
 							:sub-problems="solution.sub_prob"
+							:prob-abstract="solution.abstract"
+							:prob-tags="solution.tags"
 						></AccordionTab>
 					</div>
 				</ScrollPanel>
@@ -88,6 +89,7 @@ export default {
 					id: "S0001",
 					name: "方案1",
 					abstract: "A short description.",
+					tags: ["topic1", "topic2", "topic3"],
 					sub_prob: [
 						{
 							id: "S0002",
@@ -110,6 +112,7 @@ export default {
 					id: "S0005",
 					name: "方案2",
 					abstract: "A short description.",
+					tags: ["topic1", "topic2", "topic3"],
 					sub_prob: [
 						{
 							id: "S0006",
@@ -127,12 +130,14 @@ export default {
 					id: "S0008",
 					name: "方案3",
 					abstract: "A short description.",
+					tags: ["topic1", "topic2", "topic3"],
 					sub_prob: [],
 				},
 				{
 					id: "S0009",
 					name: "方案4",
 					abstract: "A short description.",
+					tags: ["topic1", "topic2", "topic3"],
 					sub_prob: [
 						{
 							id: "S0010",
