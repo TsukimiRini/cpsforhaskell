@@ -9,31 +9,31 @@
 
 <script>
 export default {
-    props: {
-        iconName: {
-            type: String,
-            default: 'info'
-        },
-        width: {
-            type: [Number, String],
-            default: 18
-        },
-        height: {
-            type: [Number, String],
-            default: 18
-        },
-        iconColor: {
-            type: String,
-            default: 'currentColor'
-        }
-    }
-}
+	props: {
+		iconName: {
+			type: String,
+			default: "info",
+		},
+		width: {
+			type: [Number, String],
+			default: 18,
+		},
+		height: {
+			type: [Number, String],
+			default: 18,
+		},
+		iconColor: {
+			type: String,
+			default: "currentColor",
+		},
+	},
+};
 </script>
 
 <style scoped>
 svg {
-    display: inline-block;
-    vertical-align: baseline;
-    margin-bottom: -2px;
+	display: inline-block;
+	vertical-align: baseline;
+	margin-bottom: -2px;
 }
 </style>

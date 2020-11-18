@@ -1,16 +1,16 @@
 <template>
-<router-view></router-view>
+	<router-view></router-view>
 </template>
 
 <script>
-import "./assets/css/BaseCSS.css"
+import "./assets/css/BaseCSS.css";
 
-export default {}
+export default {};
 </script>
 
 <style>
 body {
-    margin: 0px;
-    background: #F7F7F7;
+	margin: 0px;
+	background: #f7f7f7;
 }
 </style>
