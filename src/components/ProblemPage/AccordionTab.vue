@@ -28,10 +28,12 @@
 					</IconBase>
 					<RankDropDown rank-object="problem"></RankDropDown>
 				</div>
-				<div class="align-center">
+				<div class="align-center" v-tooltip="probLikes + ' likes'">
 					<IconBase icon-name="favor" icon-color="#3e3e3e">
 						<IconFavor></IconFavor>
 					</IconBase>
+				</div>
+				<div class="align-center">
 					<i class="pi pi-ellipsis-v"></i>
 				</div>
 			</div>
@@ -92,6 +94,10 @@ export default {
 		probTags: {
 			type: Array,
 			default: () => [],
+		},
+		probLikes: {
+			type: Number,
+			default: () => 0,
 		},
 	},
 	setup(props) {
@@ -177,7 +183,7 @@ export default {
 	border-top: none;
 	overflow: hidden;
 	transition: 0.5s ease;
-	padding: 5px 15px 15px 15px;
+	padding: 15px 15px 15px 15px;
 }
 
 .vertical-align {

@@ -59,6 +59,7 @@
 							:sub-problems="solution.sub_prob"
 							:prob-abstract="solution.abstract"
 							:prob-tags="solution.tags"
+							:prob-likes="solution.likes"
 						></AccordionTab>
 					</div>
 				</ScrollPanel>
@@ -90,6 +91,7 @@ export default {
 					name: "方案1",
 					abstract: "A short description.",
 					tags: ["topic1", "topic2", "topic3"],
+					likes: 167,
 					sub_prob: [
 						{
 							id: "S0002",
@@ -113,6 +115,7 @@ export default {
 					name: "方案2",
 					abstract: "A short description.",
 					tags: ["topic1", "topic2", "topic3"],
+					likes: 167,
 					sub_prob: [
 						{
 							id: "S0006",
@@ -131,6 +134,7 @@ export default {
 					name: "方案3",
 					abstract: "A short description.",
 					tags: ["topic1", "topic2", "topic3"],
+					likes: 167,
 					sub_prob: [],
 				},
 				{
@@ -138,6 +142,7 @@ export default {
 					name: "方案4",
 					abstract: "A short description.",
 					tags: ["topic1", "topic2", "topic3"],
+					likes: 167,
 					sub_prob: [
 						{
 							id: "S0010",

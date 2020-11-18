@@ -3026,6 +3026,9 @@
   background: rgba(0, 0, 0, 0.4);
 }
 
+.p-tooltip{
+  z-index: 3000;
+}
 .p-tooltip .p-tooltip-text {
   background: #495057;
   color: #ffffff;
