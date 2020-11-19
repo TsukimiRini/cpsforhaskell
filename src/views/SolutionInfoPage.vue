@@ -46,24 +46,16 @@
 		</div>
 	</div>
 
-	<div>
-		<TabView>
-			<TabPanel header="解决方案">
-				<ScrollPanel :style="{ height: scrollHeight + 'px' }">
-					<div v-for="(solution, idx) in problem.solutions" :key="idx">
-						<AccordionTab
-							:header="solution.name"
-							:sub-problems="solution.sub_prob"
-							:prob-abstract="solution.abstract"
-							:prob-tags="solution.tags"
-							:prob-likes="solution.likes"
-						></AccordionTab>
-					</div>
-				</ScrollPanel>
-			</TabPanel>
-			<TabPanel header="测试用例"> </TabPanel>
-		</TabView>
+	<div class="operate-bar">
+		<div class="align-center" style="padding: 3px 8px 3px 8px; display: flex">
+			<i class="pi pi-angle-left" style="font-size: 20px; cursor: pointer"></i>
+			<span style="font-size: 14px" class="align-center"> 回到列表 </span>
+		</div>
 	</div>
+
+	<ScrollPanel :style="{ height: scrollHeight + 'px' }" class="scroll-content">
+		<SolutionContentCard :solution-info="solution"></SolutionContentCard>
+	</ScrollPanel>
 </template>
 
 <script>
@@ -71,6 +63,7 @@ import TagItem from "@/components/Base/TagItem";
 import AccordionTab from "@/components/ProblemPage/AccordionTab.vue";
 import RankDropDown from "@/components/ProblemPage/RankingDropDown.vue";
 import { reactive, ref } from "vue";
+import SolutionContentCard from "@/components/SolutionPage/SolutionContentCard.vue";
 export default {
 	setup() {
 		const problem = reactive({
@@ -82,83 +75,80 @@ export default {
 					"insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
 				tags: ["topic1", "topic2", "topic3"],
 			},
-			solutions: [
+		});
+		const solution = reactive({
+			id: "S0001",
+			name: "方案1",
+			abstract: "A short description.",
+			tags: ["topic1", "topic2", "topic3"],
+			logic: `insertIntoBinaryTree node tree  =
+                stepOne  (stepTwo node tree) tree`,
+			likes: 167,
+			sub_prob: [
 				{
-					id: "S0001",
-					name: "方案1",
-					abstract: "A short description.",
-					tags: ["topic1", "topic2", "topic3"],
-					likes: 167,
-					sub_prob: [
+					id: "S0002",
+					name: "子问题1",
+					abstract: "简单的说明。",
+					inputs: [
 						{
-							id: "S0002",
-							name: "子问题1",
-							abstract: "简单的说明。",
+							type: "Ord",
+							description: "关于输入的简要描述。",
 						},
 						{
-							id: "S0003",
-							name: "子问题2",
-							abstract: "简单的说明。",
-						},
-						{
-							id: "S0004",
-							name: "子问题3",
-							abstract: "简单的说明。",
+							type: "Ord",
+							description: "关于输入的简要描述。",
 						},
 					],
-				},
-				{
-					id: "S0005",
-					name: "方案2",
-					abstract: "A short description.",
-					tags: ["topic1", "topic2", "topic3"],
-					likes: 167,
-					sub_prob: [
+					outputs: [
 						{
-							id: "S0006",
-							name: "子问题1",
-							abstract: "简单的说明。",
-						},
-						{
-							id: "S0007",
-							name: "子问题2",
-							abstract: "简单的说明。",
+							type: "Ord",
+							description: "关于输出的简要描述。",
 						},
 					],
+					notes: "子问题的备注。",
 				},
 				{
-					id: "S0008",
-					name: "方案3",
-					abstract: "A short description.",
-					tags: ["topic1", "topic2", "topic3"],
-					likes: 167,
-					sub_prob: [],
-				},
-				{
-					id: "S0009",
-					name: "方案4",
-					abstract: "A short description.",
-					tags: ["topic1", "topic2", "topic3"],
-					likes: 167,
-					sub_prob: [
+					id: "S0003",
+					name: "子问题2",
+					abstract: "简单的说明。",
+					inputs: [
 						{
-							id: "S0010",
-							name: "子问题1",
-							abstract: "简单的说明。",
-						},
-						{
-							id: "S0011",
-							name: "子问题2",
-							abstract: "简单的说明。",
-						},
-						{
-							id: "S0012",
-							name: "子问题3",
-							abstract: "简单的说明。",
+							type: "Ord",
+							description: "关于输入的简要描述。",
 						},
 					],
+					outputs: [
+						{
+							type: "Ord",
+							description: "关于输出的简要描述。",
+						},
+					],
+					notes: "子问题的备注。",
+				},
+				{
+					id: "S0004",
+					name: "子问题3",
+					abstract: "简单的说明。",
+					inputs: [
+						{
+							type: "Ord",
+							description: "关于输入的简要描述。",
+						},
+						{
+							type: "Ord",
+							description: "关于输入的简要描述。",
+						},
+					],
+					outputs: [
+						{
+							type: "Ord",
+							description: "关于输出的简要描述。",
+						},
+					],
+					notes: "子问题的备注。",
 				},
 			],
+			notes: "解决方案的长描述。",
 		});
 
 		let cardToggled = ref(false);
@@ -212,6 +202,7 @@ export default {
 
 		return {
 			problem,
+			solution,
 			TagItem,
 			AccordionTab,
 			RankDropDown,
@@ -220,6 +211,7 @@ export default {
 			cardClass,
 			iconClass,
 			scrollHeight,
+			SolutionContentCard,
 		};
 	},
 };
@@ -262,5 +254,26 @@ export default {
 	left: 50%;
 	position: relative;
 	cursor: pointer;
+}
+
+.operate-bar {
+	background: white;
+	height: 44px;
+	border: 1px solid #dee2e6;
+	border-width: 0 0 2px 0;
+	display: flex;
+}
+
+.align-center {
+	align-self: center;
+}
+
+.scroll-content {
+	padding: 8px 5px 5px 8px;
+}
+
+.solution-content-container {
+	background: white;
+	border: 1px solid #dee2e6;
 }
 </style>

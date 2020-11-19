@@ -41,7 +41,7 @@ export default {
 		const menuItems = [
 			{
 				label: "发现",
-				to: "/",
+				to: "/solution",
 			},
 			{
 				label: "讨论",

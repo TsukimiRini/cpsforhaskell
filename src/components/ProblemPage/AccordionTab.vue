@@ -40,12 +40,12 @@
 					</span>
 					<RankDropDown rank-object="problem"></RankDropDown>
 				</div>
-				<div class="align-center" v-tooltip="probLikes + ' likes'">
+				<div class="flex-align-center" v-tooltip="probLikes + ' likes'">
 					<IconBase icon-name="favor" icon-color="#3e3e3e">
 						<IconFavor></IconFavor>
 					</IconBase>
 				</div>
-				<div class="align-center" v-click-outside="closeSolutionMenu">
+				<div class="flex-align-center" v-click-outside="closeSolutionMenu">
 					<i class="pi pi-ellipsis-v" @click="clickSolutionMore"></i>
 					<span
 						class="solution-menu-popover"

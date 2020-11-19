@@ -29,6 +29,7 @@ import AccordionTab from 'primevue/accordiontab';
 import ScrollPanel from 'primevue/scrollpanel';
 import Dropdown from 'primevue/dropdown';
 import Tooltip from 'primevue/tooltip';
+import SelectButton from 'primevue/selectbutton';
 
 // css
 import '@/assets/css/theme.css';
@@ -78,6 +79,7 @@ app.component('AccordionTab', AccordionTab);
 app.component('ScrollPanel', ScrollPanel);
 app.component('Dropdown', Dropdown);
 app.directive('tooltip', Tooltip);
+app.component('SelectButton', SelectButton);
 
 app.use(Highlight);
 

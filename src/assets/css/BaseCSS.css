@@ -34,3 +34,16 @@ code {
     padding: 5px 5px 5px 5px !important;
     font-size: 12px !important;
 }
+
+.flex-align-center {
+	align-self: center;
+}
+.flex-div{
+    display: flex;
+}
+
+.code-block{
+    background: #F4F4F4;
+    padding: 15px;
+    border-radius: 7px;
+}
