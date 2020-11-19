@@ -45,8 +45,14 @@
 						<IconFavor></IconFavor>
 					</IconBase>
 				</div>
-				<div class="align-center">
-					<i class="pi pi-ellipsis-v"></i>
+				<div class="align-center" v-click-outside="closeSolutionMenu">
+					<i class="pi pi-ellipsis-v" @click="clickSolutionMore"></i>
+					<span
+						class="solution-menu-popover"
+						:style="{ visibility: solutionMenuShow }"
+					>
+						<PopoverMenu :options="solutionMenu"></PopoverMenu>
+					</span>
 				</div>
 			</div>
 		</div>
@@ -89,6 +95,7 @@ import RankDropDown from "./RankingDropDown.vue";
 import SubProblemItem from "./SubProblemItem.vue";
 import TagItem from "@/components/Base/TagItem.vue";
 import FilterCard from "@/components/Base/FilterCard.vue";
+import PopoverMenu from "@/components/Base/PopoverMenu.vue";
 export default {
 	props: {
 		header: String,
@@ -153,8 +160,22 @@ export default {
 				filterPopoverShow.value == "hidden" ? "visible" : "hidden";
 		};
 		const closeFilter = () => {
-			console.log("hidden");
 			filterPopoverShow.value = "hidden";
+		};
+
+		let solutionMenuShow = ref("hidden");
+		const solutionMenu = [
+			"引用到我的项目下",
+			"查看相关讨论串",
+			"在新的讨论串中引用",
+			"编辑...",
+		];
+		const clickSolutionMore = () => {
+			solutionMenuShow.value =
+				solutionMenuShow.value == "hidden" ? "visible" : "hidden";
+		};
+		const closeSolutionMenu = () => {
+			solutionMenuShow.value = "hidden";
 		};
 
 		return {
@@ -174,6 +195,11 @@ export default {
 			filterPopoverShow,
 			clickFilter,
 			closeFilter,
+			PopoverMenu,
+			solutionMenu,
+			solutionMenuShow,
+			closeSolutionMenu,
+			clickSolutionMore,
 		};
 	},
 };
@@ -244,5 +270,13 @@ export default {
 .bar-class {
 	width: 170px;
 	height: 25px;
+}
+
+.solution-menu-popover {
+	position: absolute;
+	z-index: 1000;
+	right: 8px;
+	bottom: -120px;
+	cursor: default;
 }
 </style>
