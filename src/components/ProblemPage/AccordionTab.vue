@@ -1,10 +1,6 @@
 <template>
 	<div class="accordion-tab">
-		<div
-			class="accordion-tab-header"
-			style="display: flex; justify-content: space-between"
-			@click="(e) => dropDown && onclick(e)"
-		>
+		<div class="accordion-tab-header" style="display: flex; justify-content: space-between" @click="(e) => dropDown && onclick(e)">
 			<div class="accordion-tab-title">
 				<i :class="[icon_class, dropdown_enable_status]"></i>
 				<span>{{ header }}</span>
@@ -14,27 +10,13 @@
 				</IconBase>
                 -->
 			</div>
-			<div
-				style="
-					align-self: center;
-					height: 30px;
-					display: flex;
-					justify-content: space-between;
-				"
-			>
+			<div style="align-self: center; height: 30px; display: flex; justify-content: space-between">
 				<div :style="{ display: icons_display }" class="align-center bar-class">
 					<span v-click-outside="closeFilter">
-						<IconBase
-							icon-name="filter"
-							icon-color="#3e3e3e"
-							@click="clickFilter"
-						>
+						<IconBase icon-name="filter" icon-color="#3e3e3e" @click="clickFilter">
 							<IconFilter></IconFilter>
 						</IconBase>
-						<span
-							class="filter-popover"
-							:style="{ visibility: filterPopoverShow }"
-						>
+						<span class="filter-popover" :style="{ visibility: filterPopoverShow }">
 							<FilterCard></FilterCard>
 						</span>
 					</span>
@@ -47,23 +29,14 @@
 				</div>
 				<div class="flex-align-center" v-click-outside="closeSolutionMenu">
 					<i class="pi pi-ellipsis-v" @click="clickSolutionMore"></i>
-					<span
-						class="solution-menu-popover"
-						:style="{ visibility: solutionMenuShow }"
-					>
+					<span class="solution-menu-popover" :style="{ visibility: solutionMenuShow }">
 						<PopoverMenu :options="solutionMenu"></PopoverMenu>
 					</span>
 				</div>
 			</div>
 		</div>
 	</div>
-	<transition
-		name="fold"
-		@before-enter="beforeEnter"
-		@enter="enter"
-		@before-leave="beforeLeave"
-		@leave="leave"
-	>
+	<transition name="fold" @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
 		<div class="accordion-tab-content" v-if="content_display">
 			<div style="margin: 0px 10px 10px 10px">
 				<div style="height: 30px">
@@ -129,10 +102,7 @@ export default {
 		const onclick = (e) => {
 			const clickedClass = e.target.className;
 			if (clickedClass == "accordion-tab-header") {
-				icon_class.value =
-					icon_class.value == "pi pi-angle-right"
-						? "pi pi-angle-down"
-						: "pi pi-angle-right";
+				icon_class.value = icon_class.value == "pi pi-angle-right" ? "pi pi-angle-down" : "pi pi-angle-right";
 				content_display.value = content_display.value == false ? true : false;
 				icons_display.value = icons_display.value == "none" ? "inline" : "none";
 			}
@@ -147,32 +117,27 @@ export default {
 
 		const beforeEnter = (el) => {
 			el.style.height = 0;
+			el.style.padding = "0px 15px 0px 15px";
 		};
 		const enter = (el) => {
-			el.style.height = el.scrollHeight + "px";
+			el.style.height = el.scrollHeight + 30 + "px";
+			el.style.padding = "15px 15px 15px 15px";
 		};
 		const beforeLeave = enter;
 		const leave = beforeEnter;
 
 		let filterPopoverShow = ref("hidden");
 		const clickFilter = () => {
-			filterPopoverShow.value =
-				filterPopoverShow.value == "hidden" ? "visible" : "hidden";
+			filterPopoverShow.value = filterPopoverShow.value == "hidden" ? "visible" : "hidden";
 		};
 		const closeFilter = () => {
 			filterPopoverShow.value = "hidden";
 		};
 
 		let solutionMenuShow = ref("hidden");
-		const solutionMenu = [
-			"引用到我的项目下",
-			"查看相关讨论串",
-			"在新的讨论串中引用",
-			"编辑...",
-		];
+		const solutionMenu = ["引用到我的项目下", "查看相关讨论串", "在新的讨论串中引用", "编辑..."];
 		const clickSolutionMore = () => {
-			solutionMenuShow.value =
-				solutionMenuShow.value == "hidden" ? "visible" : "hidden";
+			solutionMenuShow.value = solutionMenuShow.value == "hidden" ? "visible" : "hidden";
 		};
 		const closeSolutionMenu = () => {
 			solutionMenuShow.value = "hidden";

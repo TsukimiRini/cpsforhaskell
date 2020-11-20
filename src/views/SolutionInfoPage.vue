@@ -8,17 +8,11 @@
 			<div>
 				<span>{{ problem.info.title }}</span>
 				<span>#{{ problem.info.id }}</span>
-				<Button class="info-button" style="margin-left: 5px !important"
-					>详细信息</Button
-				>
+				<Button class="info-button" style="margin-left: 5px !important">详细信息</Button>
 			</div>
 			<div>
-				<Button class="info-button" style="margin-left: 5px !important"
-					>打包为可运行项目</Button
-				>
-				<Button class="info-button" style="margin-left: 5px !important"
-					>关注<i class="pi pi-plus" style="fontsize: 10px"></i
-				></Button>
+				<Button class="info-button" style="margin-left: 5px !important">打包为可运行项目</Button>
+				<Button class="info-button" style="margin-left: 5px !important">关注<i class="pi pi-plus" style="fontsize: 10px"></i></Button>
 			</div>
 		</div>
 		<div :class="{ 'none-display': cardToggled }">
@@ -28,16 +22,11 @@
 			</div>
 			<div class="context-container">
 				<span style="font-weight: bold">签名：</span>
-				<pre
-					style="margin: 0px 0px 0px 0px"
-					v-highlight
-				><code class="haskell" style="display: inline;padding: 5px 0px 5px 0px;background:0">{{problem.info.def}}</code></pre>
+				<pre style="margin: 0px 0px 0px 0px" v-highlight><code class="haskell" style="display: inline;padding: 5px 0px 5px 0px;background:0">{{problem.info.def}}</code></pre>
 			</div>
 			<div class="context-container">
 				<span style="font-weight: bold">标签：</span>
-				<TagItem v-for="(tag, idx) in problem.info.tags" :key="idx">{{
-					tag
-				}}</TagItem>
+				<TagItem v-for="(tag, idx) in problem.info.tags" :key="idx">{{ tag }}</TagItem>
 			</div>
 		</div>
 
@@ -71,8 +60,7 @@ export default {
 				id: "P0001",
 				title: "Some problem title",
 				abstract: "A short description.",
-				def:
-					"insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
+				def: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
 				tags: ["topic1", "topic2", "topic3"],
 			},
 		});
@@ -89,6 +77,8 @@ export default {
 					id: "S0002",
 					name: "子问题1",
 					abstract: "简单的说明。",
+					tags: ["topic1", "topic2", "topic3"],
+					signature: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
 					inputs: [
 						{
 							type: "Ord",
@@ -111,6 +101,8 @@ export default {
 					id: "S0003",
 					name: "子问题2",
 					abstract: "简单的说明。",
+					tags: ["topic1", "topic2", "topic3"],
+					signature: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
 					inputs: [
 						{
 							type: "Ord",
@@ -129,6 +121,8 @@ export default {
 					id: "S0004",
 					name: "子问题3",
 					abstract: "简单的说明。",
+					tags: ["topic1", "topic2", "topic3"],
+					signature: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
 					inputs: [
 						{
 							type: "Ord",
@@ -166,37 +160,25 @@ export default {
 		});
 
 		let scrollHeight = ref(0);
-		scrollHeight.value = window.innerHeight - 56 - 250 - 60;
+		scrollHeight.value = window.innerHeight - 56 - 250 - 70;
 
 		const toggle_up = () => {
 			cardToggled.value = cardToggled.value == true ? false : true;
-			cardClass["toggled-up-card"] = cardClass["toggled-up-card"]
-				? false
-				: true;
+			cardClass["toggled-up-card"] = cardClass["toggled-up-card"] ? false : true;
 			iconClass["pi-chevron-up"] = iconClass["pi-chevron-up"] ? false : true;
-			iconClass["pi-chevron-down"] = iconClass["pi-chevron-down"]
-				? false
-				: true;
+			iconClass["pi-chevron-down"] = iconClass["pi-chevron-down"] ? false : true;
 			if (cardToggled.value) {
-				scrollHeight.value =
-					window.innerHeight -
-					document.getElementById("theHeader").clientHeight -
-					110 -
-					60;
+				scrollHeight.value = window.innerHeight - document.getElementById("theHeader").clientHeight - 110 - 60;
 			} else {
-				scrollHeight.value = window.innerHeight - 56 - 250 - 60;
+				scrollHeight.value = window.innerHeight - 56 - 250 - 70;
 			}
 		};
 
 		window.addEventListener("resize", () => {
 			if (cardToggled.value) {
-				scrollHeight.value =
-					window.innerHeight -
-					document.getElementById("theHeader").clientHeight -
-					110 -
-					60;
+				scrollHeight.value = window.innerHeight - document.getElementById("theHeader").clientHeight - 110 - 60;
 			} else {
-				scrollHeight.value = window.innerHeight - 56 - 250 - 60;
+				scrollHeight.value = window.innerHeight - 56 - 250 - 70;
 			}
 		});
 
@@ -269,7 +251,6 @@ export default {
 }
 
 .scroll-content {
-	padding: 8px 5px 5px 8px;
 }
 
 .solution-content-container {

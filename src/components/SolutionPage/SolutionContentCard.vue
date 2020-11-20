@@ -2,44 +2,21 @@
 	<div class="solution-content-container">
 		<div class="card-header">
 			<div class="flex-align-center flex-div">
-				<span
-					class="flex-align-center"
-					style="font-weight: bold; font-size: 20px"
-				>
-					{{ solutionInfo.name }}#{{ solutionInfo.id }}
-				</span>
+				<span class="flex-align-center" style="font-weight: bold; font-size: 20px"> {{ solutionInfo.name }}#{{ solutionInfo.id }} </span>
 				<Button class="info-button edit-button">编辑</Button>
 			</div>
 			<div class="flex-align-center flex-div">
-				<SelectButton
-					v-model="selectedMode"
-					:options="modes"
-					class="col-margin"
-				></SelectButton>
+				<SelectButton v-model="selectedMode" :options="modes" class="col-margin"></SelectButton>
 
-				<div
-					class="flex-align-center col-margin"
-					v-tooltip="solutionInfo.likes + ' likes'"
-				>
+				<div class="flex-align-center col-margin" v-tooltip="solutionInfo.likes + ' likes'">
 					<IconBase icon-name="favor" icon-color="#3e3e3e">
 						<IconFavor></IconFavor>
 					</IconBase>
 				</div>
 
-				<div
-					class="flex-align-center"
-					v-click-outside="closeSolutionMenu"
-					style="position: relative"
-				>
-					<i
-						class="pi pi-ellipsis-v"
-						@click="clickSolutionMore"
-						style="cursor: pointer"
-					></i>
-					<span
-						class="solution-menu-popover"
-						:style="{ visibility: solutionMenuShow }"
-					>
+				<div class="flex-align-center" v-click-outside="closeSolutionMenu" style="position: relative">
+					<i class="pi pi-ellipsis-v" @click="clickSolutionMore" style="cursor: pointer"></i>
+					<span class="solution-menu-popover" :style="{ visibility: solutionMenuShow }">
 						<PopoverMenu :options="solutionMenu"></PopoverMenu>
 					</span>
 				</div>
@@ -59,15 +36,21 @@
 			<div>
 				<span class="field-title">逻辑代码</span>
 				<div class="code-block">
-					<pre
-						style="margin: 0px 0px 0px 0px"
-						v-highlight
-					><code class="haskell" style="background: transparent">{{ solutionInfo.logic }}</code></pre>
+					<pre style="margin: 0px 0px 0px 0px" v-highlight><code class="haskell" style="background: transparent">{{ solutionInfo.logic }}</code></pre>
 				</div>
 			</div>
 
 			<div>
 				<span class="field-title">子问题</span>
+			</div>
+			<div v-for="(problem, idx) in solutionInfo.sub_prob" :key="idx">
+				<SubProbCard :sub-prob="problem"></SubProbCard>
+			</div>
+			<div>
+				备注：<i class="pi pi-external-link" style="cursor: pointer"></i>
+				<div class="code-block">
+					{{ solutionInfo.notes }}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -77,6 +60,7 @@
 import { ref } from "vue";
 import PopoverMenu from "@/components/Base/PopoverMenu.vue";
 import TagItem from "@/components/Base/TagItem.vue";
+import SubProbCard from "./SubProblemCard.vue";
 export default {
 	props: {
 		solutionInfo: {
@@ -89,15 +73,9 @@ export default {
 		let selectedMode = ref("UI模式");
 
 		let solutionMenuShow = ref("hidden");
-		const solutionMenu = [
-			"引用到我的项目下",
-			"查看相关讨论串",
-			"在新的讨论串中引用",
-			"编辑...",
-		];
+		const solutionMenu = ["引用到我的项目下", "查看相关讨论串", "在新的讨论串中引用", "编辑..."];
 		const clickSolutionMore = () => {
-			solutionMenuShow.value =
-				solutionMenuShow.value == "hidden" ? "visible" : "hidden";
+			solutionMenuShow.value = solutionMenuShow.value == "hidden" ? "visible" : "hidden";
 		};
 		const closeSolutionMenu = () => {
 			solutionMenuShow.value = "hidden";
@@ -112,6 +90,7 @@ export default {
 			clickSolutionMore,
 			closeSolutionMenu,
 			TagItem,
+			SubProbCard,
 		};
 	},
 };
@@ -122,6 +101,7 @@ export default {
 	background: white;
 	border: 1px solid #dee2e6;
 	padding: 15px 15px 15px 15px;
+	margin: 8px 5px 8px 5px;
 }
 .card-header {
 	display: flex;
