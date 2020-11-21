@@ -24,6 +24,10 @@ export default {};
 	margin-left: 10px;
 	margin-bottom: 10px;
 	display: inline-block;
+	cursor: pointer;
+}
+.container:hover {
+	border-color: black;
 }
 
 .subprob-title {

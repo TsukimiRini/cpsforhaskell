@@ -17,5 +17,11 @@ export default {};
 	height: 25px;
 	min-width: 20px;
 	font-size: 9px;
+	cursor: pointer;
+	border: 1px solid #e6e6e6;
+	transition: border 0.15s ease;
+}
+.tag-container:hover {
+	border: 1px solid #bbbbbb;
 }
 </style>

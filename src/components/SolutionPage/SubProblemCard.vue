@@ -5,10 +5,12 @@
 				<div class="accordion-tab-title">
 					<span style="display: inline; float: left">
 						<div>
-							{{ subProb.name }}
+							<span class="href-title">
+								{{ subProb.name }}
+							</span>
 						</div>
 						<div>
-							标签：
+							签名：
 							<pre v-highlight style="display: inline !important"><code class="haskell" style="background: transparent;display:inline" >{{ subProb.signature }}</code></pre>
 						</div>
 						<div>
@@ -163,5 +165,9 @@ export default {
 
 .icon-disabled {
 	color: #dee2e6;
+}
+
+.href-title:hover {
+	text-decoration: underline;
 }
 </style>
