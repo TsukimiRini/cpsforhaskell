@@ -30,6 +30,7 @@ import ScrollPanel from 'primevue/scrollpanel';
 import Dropdown from 'primevue/dropdown';
 import Tooltip from 'primevue/tooltip';
 import SelectButton from 'primevue/selectbutton';
+import Sidebar from 'primevue/sidebar';
 
 // css
 import '@/assets/css/theme.css';
@@ -80,6 +81,7 @@ app.component('ScrollPanel', ScrollPanel);
 app.component('Dropdown', Dropdown);
 app.directive('tooltip', Tooltip);
 app.component('SelectButton', SelectButton);
+app.component('Sidebar', Sidebar);
 
 app.use(Highlight);
 
