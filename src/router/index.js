@@ -4,7 +4,8 @@ import {
 } from "vue-router";
 import HomePage from "@/views/HomePagePanel.vue";
 import ProblemPage from "@/views/ProblemPage.vue";
-import SolutionPage from "@/views/SolutionInfoPage.vue"
+import SolutionPage from "@/views/SolutionInfoPage.vue";
+import SolutionEditPage from "@/views/SolutionEditPage";
 
 const routes = [{
         path: "/",
@@ -20,6 +21,10 @@ const routes = [{
         path: "/solution",
         name: "SolutionPage",
         component: SolutionPage,
+    },
+    {
+        path:"/edit-solution",
+        component:SolutionEditPage,
     },
 ];
 

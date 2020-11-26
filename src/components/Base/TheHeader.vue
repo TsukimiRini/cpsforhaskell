@@ -1,31 +1,14 @@
 <template>
 	<Menubar :model="menuItems" id="headerMenu">
 		<template #start>
-			<img
-				alt="logo"
-				src="../../assets/logo.png"
-				height="40"
-				class="center-block"
-				style="margin-right: 10px"
-			/>
+			<img alt="logo" src="../../assets/logo.png" height="40" class="center-block" style="margin-right: 10px" />
 			CPSForHaskell
 			<slot class="center-block"></slot>
 		</template>
 		<template #end>
-			<div
-				@mouseover="popupMenu"
-				@mouseout="shutMenu"
-				style="cursor: pointer; z-index: 2000"
-			>
-				<img
-					alt="userIcon"
-					src="../../assets/logo.png"
-					height="40"
-					class="menu-bar-icon center-block div-with-right-margin"
-				/>
-				<div class="menu-bar-text center-block div-with-right-margin">
-					ADMIN
-				</div>
+			<div @mouseover="popupMenu" @mouseout="shutMenu" style="cursor: pointer; z-index: 2000">
+				<img alt="userIcon" src="../../assets/logo.png" height="40" class="menu-bar-icon center-block div-with-right-margin" />
+				<div class="menu-bar-text center-block div-with-right-margin">ADMIN</div>
 				<i class="pi pi-angle-down center-block div-with-right-margin"></i>
 				<UserMenu id="userMenu" style="width: 150px; z-index: 2000"></UserMenu>
 			</div>
@@ -45,7 +28,7 @@ export default {
 			},
 			{
 				label: "讨论",
-				to: "/problem",
+				to: "/edit-solution",
 			},
 		];
 
@@ -76,19 +59,11 @@ export default {
 	color: #cec9c9 !important;
 }
 
-.p-menubar
-	.p-menubar-root-list
-	> .p-menuitem
-	> .p-menuitem-link
-	.p-menuitem-text {
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
 	color: #cec9c9 !important;
 }
 
-.p-menubar
-	.p-menubar-root-list
-	> .p-menuitem
-	> .p-menuitem-link
-	.p-menuitem-icon {
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-icon {
 	margin-right: 0 !important;
 }
 
@@ -96,10 +71,7 @@ export default {
 	margin-right: 0;
 }
 
-.p-menubar
-	.p-menubar-root-list
-	> .p-menuitem
-	> .p-menuitem-link:not(.p-disabled):hover {
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover {
 	background: #182838 !important;
 }
 

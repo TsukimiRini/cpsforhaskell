@@ -41,12 +41,12 @@
 			<div class="operate-bar">
 				<div class="align-center" style="padding: 3px 8px 3px 8px; display: flex">
 					<i class="pi pi-angle-left" style="font-size: 20px; cursor: pointer"></i>
-					<span style="font-size: 14px" class="align-center"> 回到列表 </span>
+					<span style="font-size: 14px" class="align-center"> 回到解决方案：分解1 </span>
 				</div>
 			</div>
 
 			<ScrollPanel :style="{ height: scrollHeight + 'px' }" class="scroll-content">
-				<SolutionContentCard :solution-info="solution"></SolutionContentCard>
+				<SolutionEditPage></SolutionEditPage>
 			</ScrollPanel>
 		</div>
 	</div>
@@ -55,8 +55,8 @@
 <script>
 import TagItem from "@/components/Base/TagItem";
 import { reactive, ref } from "vue";
-import SolutionContentCard from "@/components/SolutionPage/SolutionContentCard.vue";
 import SideBar from "@/components/Base/SideBar.vue";
+import SolutionEditPage from "@/components/SolutionEditPage/EditCard.vue";
 export default {
 	setup() {
 		const tree_info = reactive({
@@ -72,91 +72,6 @@ export default {
 				def: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
 				tags: ["topic1", "topic2", "topic3"],
 			},
-		});
-		const solution = reactive({
-			id: "S0001",
-			name: "方案1",
-			abstract: "A short description.",
-			tags: ["topic1", "topic2", "topic3"],
-			logic: `insertIntoBinaryTree node tree  =
-                stepOne  (stepTwo node tree) tree`,
-			codeVer: `-- precondition: tree is sorted in increasing order
--- postcondition: return tree is sorted in increasing order
-insertTree :: Ord a => a -> BinaryTree a -> BinaryTree a
-insertTree x Leaf
-	= Node x Leaf Leaf`,
-			likes: 167,
-			sub_prob: [
-				{
-					id: "S0002",
-					name: "子问题1",
-					abstract: "简单的说明。",
-					tags: ["topic1", "topic2", "topic3"],
-					signature: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
-					inputs: [
-						{
-							type: "Ord",
-							description: "关于输入的简要描述。",
-						},
-						{
-							type: "Ord",
-							description: "关于输入的简要描述。",
-						},
-					],
-					outputs: [
-						{
-							type: "Ord",
-							description: "关于输出的简要描述。",
-						},
-					],
-					notes: "子问题的备注。",
-				},
-				{
-					id: "S0003",
-					name: "子问题2",
-					abstract: "简单的说明。",
-					tags: ["topic1", "topic2", "topic3"],
-					signature: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
-					inputs: [
-						{
-							type: "Ord",
-							description: "关于输入的简要描述。",
-						},
-					],
-					outputs: [
-						{
-							type: "Ord",
-							description: "关于输出的简要描述。",
-						},
-					],
-					notes: "子问题的备注。",
-				},
-				{
-					id: "S0004",
-					name: "子问题3",
-					abstract: "简单的说明。",
-					tags: ["topic1", "topic2", "topic3"],
-					signature: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
-					inputs: [
-						{
-							type: "Ord",
-							description: "关于输入的简要描述。",
-						},
-						{
-							type: "Ord",
-							description: "关于输入的简要描述。",
-						},
-					],
-					outputs: [
-						{
-							type: "Ord",
-							description: "关于输出的简要描述。",
-						},
-					],
-					notes: "子问题的备注。",
-				},
-			],
-			notes: "解决方案的长描述。",
 		});
 
 		let cardToggled = ref(false);
@@ -209,17 +124,16 @@ insertTree x Leaf
 		return {
 			tree_info,
 			problem,
-			solution,
 			TagItem,
 			toggle_up,
 			cardToggled,
 			cardClass,
 			iconClass,
 			scrollHeight,
-			SolutionContentCard,
 			SideBar,
 			collapseSidebar,
 			collapseOperation,
+			SolutionEditPage,
 		};
 	},
 };
