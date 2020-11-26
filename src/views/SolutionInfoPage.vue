@@ -82,6 +82,11 @@ export default {
 			tags: ["topic1", "topic2", "topic3"],
 			logic: `insertIntoBinaryTree node tree  =
                 stepOne  (stepTwo node tree) tree`,
+			codeVer: `-- precondition: tree is sorted in increasing order
+-- postcondition: return tree is sorted in increasing order
+insertTree :: Ord a => a -> BinaryTree a -> BinaryTree a
+insertTree x Leaf
+	= Node x Leaf Leaf`,
 			likes: 167,
 			sub_prob: [
 				{

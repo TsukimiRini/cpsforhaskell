@@ -22,7 +22,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="card-content">
+		<div class="card-content" v-if="selectedMode == 'UI模式'">
 			<div>
 				<span class="field-title">概要</span>
 				<span>{{ solutionInfo.abstract }}</span>
@@ -34,7 +34,7 @@
 				</span>
 			</div>
 			<div>
-				<span class="field-title">逻辑代码</span>
+				<span class="field-title">源码</span>
 				<div class="code-block">
 					<pre style="margin: 0px 0px 0px 0px" v-highlight><code class="haskell" style="background: transparent">{{ solutionInfo.logic }}</code></pre>
 				</div>
@@ -52,6 +52,9 @@
 					{{ solutionInfo.notes }}
 				</div>
 			</div>
+		</div>
+		<div class="code-block" v-if="selectedMode == 'Code模式'">
+			<pre style="margin: 0px 0px 0px 0px" v-highlight><code class="haskell" style="background: transparent">{{ solutionInfo.codeVer }}</code></pre>
 		</div>
 	</div>
 </template>
