@@ -1,68 +1,56 @@
 <template>
 	<TheHeader id="theHeader">
 		<span class="navbar-title"> 开发模式 </span>
+		<i class="pi pi-bars" style="margin-left: 10px; cursor: pointer" @click="collapseOperation"></i>
 	</TheHeader>
-
-	<div :class="cardClass">
-		<div class="problem-title">
-			<div>
-				<span>{{ problem.info.title }}</span>
-				<span>#{{ problem.info.id }}</span>
-				<Button class="info-button" style="margin-left: 5px !important"
-					>详细信息</Button
-				>
-			</div>
-			<div>
-				<Button class="info-button" style="margin-left: 5px !important"
-					>打包为可运行项目</Button
-				>
-				<Button class="info-button" style="margin-left: 5px !important"
-					>关注<i class="pi pi-plus" style="fontsize: 10px"></i
-				></Button>
-			</div>
-		</div>
-		<div :class="{ 'none-display': cardToggled }">
-			<div class="context-container">
-				<span style="font-weight: bold">概要：</span>
-				<span>{{ problem.info.abstract }}</span>
-			</div>
-			<div class="context-container">
-				<span style="font-weight: bold">签名：</span>
-				<pre
-					style="margin: 0px 0px 0px 0px"
-					v-highlight
-				><code class="haskell" style="display: inline;padding: 5px 0px 5px 0px;background:0">{{problem.info.def}}</code></pre>
-			</div>
-			<div class="context-container">
-				<span style="font-weight: bold">标签：</span>
-				<TagItem v-for="(tag, idx) in problem.info.tags" :key="idx">{{
-					tag
-				}}</TagItem>
-			</div>
-		</div>
-
-		<div :class="{ 'id-container': !cardToggled }">
-			<i :class="iconClass" @click="toggle_up"></i>
-		</div>
-	</div>
-
 	<div>
-		<TabView>
-			<TabPanel header="解决方案">
-				<ScrollPanel :style="{ height: scrollHeight + 'px' }">
-					<div v-for="(solution, idx) in problem.solutions" :key="idx">
-						<AccordionTab
-							:header="solution.name"
-							:sub-problems="solution.sub_prob"
-							:prob-abstract="solution.abstract"
-							:prob-tags="solution.tags"
-							:prob-likes="solution.likes"
-						></AccordionTab>
+		<SideBar :data="tree_info" :collapsed="collapseSidebar"></SideBar>
+		<div class="main-container" id="main">
+			<div :class="cardClass">
+				<div class="problem-title">
+					<div>
+						<span>{{ problem.info.title }}</span>
+						<span>#{{ problem.info.id }}</span>
+						<Button class="info-button" style="margin-left: 5px !important">详细信息</Button>
 					</div>
-				</ScrollPanel>
-			</TabPanel>
-			<TabPanel header="测试用例"> </TabPanel>
-		</TabView>
+					<div>
+						<Button class="info-button" style="margin-left: 5px !important">打包为可运行项目</Button>
+						<Button class="info-button" style="margin-left: 5px !important">关注<i class="pi pi-plus" style="fontsize: 10px"></i></Button>
+					</div>
+				</div>
+				<div :class="{ 'none-display': cardToggled }">
+					<div class="context-container">
+						<span style="font-weight: bold">概要：</span>
+						<span>{{ problem.info.abstract }}</span>
+					</div>
+					<div class="context-container">
+						<span style="font-weight: bold">签名：</span>
+						<pre style="margin: 0px 0px 0px 0px" v-highlight><code class="haskell" style="display: inline;padding: 5px 0px 5px 0px;background:0">{{problem.info.def}}</code></pre>
+					</div>
+					<div class="context-container">
+						<span style="font-weight: bold">标签：</span>
+						<TagItem v-for="(tag, idx) in problem.info.tags" :key="idx">{{ tag }}</TagItem>
+					</div>
+				</div>
+
+				<div :class="{ 'id-container': !cardToggled }">
+					<i :class="iconClass" @click="toggle_up"></i>
+				</div>
+			</div>
+
+			<div>
+				<TabView>
+					<TabPanel header="解决方案">
+						<ScrollPanel :style="{ height: scrollHeight + 'px' }">
+							<div v-for="(solution, idx) in problem.solutions" :key="idx">
+								<AccordionTab :header="solution.name" :sub-problems="solution.sub_prob" :prob-abstract="solution.abstract" :prob-tags="solution.tags" :prob-likes="solution.likes"></AccordionTab>
+							</div>
+						</ScrollPanel>
+					</TabPanel>
+					<TabPanel header="测试用例"> </TabPanel>
+				</TabView>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -70,16 +58,21 @@
 import TagItem from "@/components/Base/TagItem";
 import AccordionTab from "@/components/ProblemPage/AccordionTab.vue";
 import RankDropDown from "@/components/ProblemPage/RankingDropDown.vue";
+import SideBar from "@/components/Base/SideBar.vue";
 import { reactive, ref } from "vue";
 export default {
 	setup() {
+		const tree_info = reactive({
+			parents: ["Sample Project", "problem 1", "problem 2", "problem 3"],
+			siblings: ["sibling problem 1", "sibling problem 2"],
+			thisProblem: "Some problem title",
+		});
 		const problem = reactive({
 			info: {
 				id: "P0001",
 				title: "Some problem title",
 				abstract: "A short description.",
-				def:
-					"insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
+				def: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
 				tags: ["topic1", "topic2", "topic3"],
 			},
 			solutions: [
@@ -180,19 +173,11 @@ export default {
 
 		const toggle_up = () => {
 			cardToggled.value = cardToggled.value == true ? false : true;
-			cardClass["toggled-up-card"] = cardClass["toggled-up-card"]
-				? false
-				: true;
+			cardClass["toggled-up-card"] = cardClass["toggled-up-card"] ? false : true;
 			iconClass["pi-chevron-up"] = iconClass["pi-chevron-up"] ? false : true;
-			iconClass["pi-chevron-down"] = iconClass["pi-chevron-down"]
-				? false
-				: true;
+			iconClass["pi-chevron-down"] = iconClass["pi-chevron-down"] ? false : true;
 			if (cardToggled.value) {
-				scrollHeight.value =
-					window.innerHeight -
-					document.getElementById("theHeader").clientHeight -
-					110 -
-					60;
+				scrollHeight.value = window.innerHeight - document.getElementById("theHeader").clientHeight - 110 - 60;
 			} else {
 				scrollHeight.value = window.innerHeight - 56 - 250 - 60;
 			}
@@ -200,15 +185,21 @@ export default {
 
 		window.addEventListener("resize", () => {
 			if (cardToggled.value) {
-				scrollHeight.value =
-					window.innerHeight -
-					document.getElementById("theHeader").clientHeight -
-					110 -
-					60;
+				scrollHeight.value = window.innerHeight - document.getElementById("theHeader").clientHeight - 110 - 60;
 			} else {
 				scrollHeight.value = window.innerHeight - 56 - 250 - 60;
 			}
 		});
+
+		let collapseSidebar = ref(true);
+		const collapseOperation = () => {
+			collapseSidebar.value = !collapseSidebar.value;
+			if (collapseSidebar.value) {
+				document.getElementById("main").style.marginLeft = 0;
+			} else {
+				document.getElementById("main").style.marginLeft = 200 + "px";
+			}
+		};
 
 		return {
 			problem,
@@ -220,6 +211,10 @@ export default {
 			cardClass,
 			iconClass,
 			scrollHeight,
+			SideBar,
+			collapseSidebar,
+			collapseOperation,
+			tree_info,
 		};
 	},
 };
@@ -262,5 +257,9 @@ export default {
 	left: 50%;
 	position: relative;
 	cursor: pointer;
+}
+
+.main-container {
+	transition: margin-left 0.5s;
 }
 </style>
