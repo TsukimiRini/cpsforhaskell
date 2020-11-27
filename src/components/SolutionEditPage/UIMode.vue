@@ -30,6 +30,22 @@
 			<TypeCard id="type1"></TypeCard>
 			<TypeCard id="type2"></TypeCard>
 		</div>
+		<div class="one-line">
+			<div class="field-name flex-align-center" style="float: none">子问题：</div>
+			<SubProbCard></SubProbCard>
+		</div>
+		<div class="one-line">
+			<div class="field-name flex-align-center" style="float: none">备注：</div>
+			<Editor v-model="note" editorStyle="height: 200px">
+				<template #toolbar>
+					<span class="ql-formats">
+						<button class="ql-bold"></button>
+						<button class="ql-italic"></button>
+						<button class="ql-underline"></button>
+					</span>
+				</template>
+			</Editor>
+		</div>
 	</div>
 </template>
 
@@ -41,6 +57,7 @@ import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/mode-haskell";
 
 import TypeCard from "./TypeInfoCard.vue";
+import SubProbCard from "./SubProbCard.vue";
 export default {
 	setup() {
 		let tags = ref(null);
@@ -59,6 +76,7 @@ export default {
 			tags,
 			source_editor,
 			TypeCard,
+			SubProbCard,
 		};
 	},
 };
