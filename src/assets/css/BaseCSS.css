@@ -47,3 +47,10 @@ code {
     padding: 15px;
     border-radius: 7px;
 }
+
+.ace-tm .ace_gutter {
+	background: #f3f9e9 !important;
+}
+.ace_editor{
+    border: 1px solid #c7cbce !important;
+}
