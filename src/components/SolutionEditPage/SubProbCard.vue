@@ -1,8 +1,15 @@
 <template>
 	<div class="sub-prob-container">
 		<div class="one-line">
+			<div class="float-left flex-align-center">问题名：</div>
+			<div class="input-text-container">
+				<InputText class="input-text-one-line"></InputText>
+			</div>
+		</div>
+
+		<div class="one-line">
 			<div class="float-left">
-				<span>类型名：</span>
+				<span>函数名：</span>
 				<InputText style="width: 100px; height: 30px; margin-right: 10px"></InputText>
 				<span>说明：</span>
 			</div>

@@ -50,6 +50,7 @@
 			</ScrollPanel>
 		</div>
 	</div>
+	<FindSimilar class="popover-window"></FindSimilar>
 </template>
 
 <script>
@@ -57,6 +58,7 @@ import TagItem from "@/components/Base/TagItem";
 import { reactive, ref } from "vue";
 import SideBar from "@/components/Base/SideBar.vue";
 import SolutionEditPage from "@/components/SolutionEditPage/EditCard.vue";
+import FindSimilar from "@/components/SolutionEditPage/FindSimilar.vue";
 export default {
 	setup() {
 		const tree_info = reactive({
@@ -134,6 +136,7 @@ export default {
 			collapseSidebar,
 			collapseOperation,
 			SolutionEditPage,
+			FindSimilar,
 		};
 	},
 };
@@ -206,5 +209,12 @@ export default {
 
 .main-container {
 	transition: margin-left 0.5s;
+}
+
+.popover-window {
+	position: fixed;
+	z-index: 3;
+	bottom: 5px;
+	right: 5px;
 }
 </style>
