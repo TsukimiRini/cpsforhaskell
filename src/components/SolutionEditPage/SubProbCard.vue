@@ -10,7 +10,9 @@
 		<div class="one-line">
 			<div class="float-left">
 				<span>函数名：</span>
-				<InputText style="width: 100px; height: 30px; margin-right: 10px"></InputText>
+				<InputText
+					style="width: 100px; height: 30px; margin-right: 10px"
+				></InputText>
 				<span>说明：</span>
 			</div>
 
@@ -42,6 +44,13 @@
 		</div>
 
 		<div class="one-line">
+			<div class="float-left flex-align-center" style="float: none">
+				输入输出映射：
+			</div>
+			<div id="mappingCode"></div>
+		</div>
+
+		<div class="one-line">
 			<div style="margin-bottom: 10px">备注：</div>
 			<Editor v-model="note" editorStyle="height: 200px">
 				<template #toolbar>
@@ -57,16 +66,32 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import ParaItem from "./SubProbParaItem.vue";
+
+import ace from "ace-builds";
+import "ace-builds/webpack-resolver";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/mode-haskell";
 export default {
 	setup() {
 		let tags = ref(null);
 		let note = ref(null);
+
+		var mapping_editor = reactive({});
+		onMounted(() => {
+			mapping_editor = ace.edit("mappingCode", {
+				maxLines: 10,
+				minLines: 10,
+				value: "",
+				mode: "ace/mode/haskell",
+			});
+		});
 		return {
 			tags,
 			ParaItem,
 			note,
+			mapping_editor,
 		};
 	},
 };
