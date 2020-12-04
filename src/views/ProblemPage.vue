@@ -3,7 +3,8 @@
 		<span class="navbar-title"> 开发模式 </span>
 		<i class="pi pi-bars" style="margin-left: 10px; cursor: pointer" @click="collapseOperation"></i>
 	</TheHeader>
-	<div>
+	<ProblemDetail :problem="problem" :visible="dialogDisplay"></ProblemDetail>
+	<div @click="checkDialogDisplay">
 		<SideBar :data="tree_info" :collapsed="collapseSidebar"></SideBar>
 		<div class="main-container" id="main">
 			<div :class="cardClass">
@@ -11,7 +12,7 @@
 					<div>
 						<span>{{ problem.info.title }}</span>
 						<span>#{{ problem.info.id }}</span>
-						<Button class="info-button" style="margin-left: 5px !important">详细信息</Button>
+						<Button id="problemDetailShowButton" class="info-button" style="margin-left: 5px !important" @click="dialogDisplay = !dialogDisplay">详细信息</Button>
 					</div>
 					<div>
 						<Button class="info-button" style="margin-left: 5px !important">打包为可运行项目</Button>
@@ -59,6 +60,7 @@ import TagItem from "@/components/Base/TagItem";
 import AccordionTab from "@/components/ProblemPage/AccordionTab.vue";
 import RankDropDown from "@/components/ProblemPage/RankingDropDown.vue";
 import SideBar from "@/components/Base/SideBar.vue";
+import ProblemDetail from "@/components/Base/ProblemDetailPopup.vue";
 import { reactive, ref } from "vue";
 export default {
 	setup() {
@@ -73,6 +75,22 @@ export default {
 				title: "Some problem title",
 				abstract: "A short description.",
 				def: "insertIntoBinaryTree :: Ord a  => a -> BinaryTree a -> BinaryTree a",
+				inputs: [
+					{
+						type: "Ord",
+						description: "一段说明。",
+					},
+					{
+						type: "BinaryTree",
+						description: "一段说明。",
+					},
+				],
+				output: {
+					type: "Ord",
+					description: "一段说明。",
+				},
+				mapping: `insertIntoBinaryTree x tree = Node (Leaf x) tree `,
+				notes: "文档内容。",
 				tags: ["topic1", "topic2", "topic3"],
 			},
 			solutions: [
@@ -201,6 +219,16 @@ export default {
 			}
 		};
 
+		let dialogDisplay = ref(false);
+		const checkDialogDisplay = (e) => {
+			if (e.target.id != "problemDetailShowButton") {
+				if (dialogDisplay.value) {
+					console.log("a");
+					dialogDisplay.value = false;
+				}
+			}
+		};
+
 		return {
 			problem,
 			TagItem,
@@ -215,6 +243,9 @@ export default {
 			collapseSidebar,
 			collapseOperation,
 			tree_info,
+			ProblemDetail,
+			dialogDisplay,
+			checkDialogDisplay,
 		};
 	},
 };

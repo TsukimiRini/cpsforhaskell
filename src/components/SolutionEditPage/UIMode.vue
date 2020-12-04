@@ -23,15 +23,22 @@
 			<div id="sourceCode"></div>
 		</div>
 		<div class="center-icon">
-			<i class="pi pi-angle-double-down" style="font-size: 25px; cursor: pointer"></i>
+			<i
+				class="pi pi-angle-double-down"
+				style="font-size: 25px; cursor: pointer"
+			></i>
 		</div>
 		<div class="one-line">
-			<div class="field-name flex-align-center" style="float: none">数据类型：</div>
+			<div class="field-name flex-align-center" style="float: none">
+				数据类型：
+			</div>
 			<TypeCard id="type1"></TypeCard>
 			<TypeCard id="type2"></TypeCard>
 		</div>
 		<div class="one-line">
-			<div class="field-name flex-align-center" style="float: none">子问题：</div>
+			<div class="field-name flex-align-center" style="float: none">
+				子问题：
+			</div>
 			<SubProbCard></SubProbCard>
 		</div>
 		<div class="one-line">
@@ -61,6 +68,7 @@ import SubProbCard from "./SubProbCard.vue";
 export default {
 	setup() {
 		let tags = ref(null);
+		let note = ref(null);
 
 		var source_editor = reactive({});
 		onMounted(() => {
@@ -77,6 +85,7 @@ export default {
 			source_editor,
 			TypeCard,
 			SubProbCard,
+			note,
 		};
 	},
 };

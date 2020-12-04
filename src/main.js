@@ -35,6 +35,7 @@ import Sidebar from 'primevue/sidebar';
 import Textarea from 'primevue/textarea';
 import Chips from 'primevue/chips';
 import Editor from 'primevue/editor';
+import Dialog from 'primevue/dialog';
 
 // css
 import '@/assets/css/theme.css';
@@ -90,6 +91,7 @@ app.component('Sidebar', Sidebar);
 app.component('Textarea', Textarea);
 app.component('Chips', Chips);
 app.component('Editor', Editor);
+app.component('Dialog', Dialog);
 
 app.use(Highlight);
 
