@@ -4,7 +4,7 @@
 			<div class="close" @click="openSimilarPopup = !openSimilarPopup">×</div>
 			<div class="popup-title">近似的解决方案</div>
 			<div v-for="(item, idx) in similarData" :key="idx">
-				<SimilarItem class="similar-solution-item">
+				<SimilarItem class="similar-solution-item" url="/solution">
 					<template v-slot:title>{{ item.title }}</template>
 					<template v-slot:context>{{ item.description }}</template>
 				</SimilarItem>

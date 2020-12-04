@@ -3,7 +3,9 @@
 		<div class="card-header">
 			<div class="flex-align-center flex-div">
 				<span class="flex-align-center" style="font-weight: bold; font-size: 20px"> {{ solutionInfo.name }}#{{ solutionInfo.id }} </span>
-				<Button class="info-button edit-button">编辑</Button>
+				<router-link to="edit-solution" style="text-decoration: inherit">
+					<Button class="info-button edit-button">编辑</Button>
+				</router-link>
 			</div>
 			<div class="flex-align-center flex-div">
 				<SelectButton v-model="selectedMode" :options="modes" class="col-margin"></SelectButton>

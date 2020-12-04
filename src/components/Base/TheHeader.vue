@@ -1,8 +1,10 @@
 <template>
 	<Menubar :model="menuItems" id="headerMenu">
 		<template #start>
-			<img alt="logo" src="../../assets/logo.png" height="40" class="center-block" style="margin-right: 10px" />
-			CPSForHaskell
+			<router-link to="/" style="text-decoration: none; color: inherit">
+				<img alt="logo" src="../../assets/logo.png" height="40" class="center-block" style="margin-right: 10px; cursor: pointer" />
+				CPSForHaskell
+			</router-link>
 			<slot class="center-block"></slot>
 		</template>
 		<template #end>

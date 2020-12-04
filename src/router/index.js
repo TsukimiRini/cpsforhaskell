@@ -13,9 +13,10 @@ const routes = [{
         component: HomePage,
     },
     {
-        path: "/problem",
+        path: "/problem/:id",
         name: "ProblemPage",
         component: ProblemPage,
+        props:true,
     },
     {
         path: "/solution",

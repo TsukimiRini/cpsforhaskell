@@ -40,9 +40,11 @@
 			</div>
 
 			<div class="operate-bar">
-				<div class="align-center" style="padding: 3px 8px 3px 8px; display: flex">
-					<i class="pi pi-angle-left" style="font-size: 20px; cursor: pointer"></i>
-					<span style="font-size: 14px" class="align-center"> 回到解决方案：分解1 </span>
+				<div class="align-center" style="padding: 3px 8px 3px 8px">
+					<router-link to="/solution" style="text-decoration: inherit; color: inherit; display: flex">
+						<i class="pi pi-angle-left" style="font-size: 20px; cursor: pointer"></i>
+						<span style="font-size: 14px" class="align-center"> 回到解决方案：分解1 </span>
+					</router-link>
 				</div>
 			</div>
 

@@ -5,9 +5,11 @@
 				<div class="accordion-tab-title">
 					<span style="display: inline; float: left">
 						<div>
-							<span class="href-title">
-								{{ subProb.name }}
-							</span>
+							<router-link to="/problem/sub" style="color: inherit; text-decoration: inherit">
+								<span class="href-title">
+									{{ subProb.name }}
+								</span>
+							</router-link>
 						</div>
 						<div>
 							签名：

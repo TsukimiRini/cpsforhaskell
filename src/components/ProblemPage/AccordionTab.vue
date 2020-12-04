@@ -3,7 +3,9 @@
 		<div class="accordion-tab-header" style="display: flex; justify-content: space-between" @click="(e) => dropDown && onclick(e)">
 			<div class="accordion-tab-title">
 				<i :class="[icon_class, dropdown_enable_status]"></i>
-				<span>{{ header }}</span>
+				<router-link :to="link" style="text-decoration: inherit; color: inherit">
+					<span>{{ header }}</span>
+				</router-link>
 				<!--
                 <IconBase icon-name="info" icon-color="#A2A2A2">
 					<IconInfo></IconInfo>
@@ -92,6 +94,7 @@ export default {
 			type: Number,
 			default: () => 0,
 		},
+		link: String,
 	},
 	setup(props) {
 		let icon_class = ref("pi pi-angle-right");

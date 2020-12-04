@@ -44,7 +44,7 @@
 					<TabPanel header="解决方案">
 						<ScrollPanel :style="{ height: scrollHeight + 'px' }">
 							<div v-for="(solution, idx) in problem.solutions" :key="idx">
-								<AccordionTab :header="solution.name" :sub-problems="solution.sub_prob" :prob-abstract="solution.abstract" :prob-tags="solution.tags" :prob-likes="solution.likes"></AccordionTab>
+								<AccordionTab link="/solution" :header="solution.name" :sub-problems="solution.sub_prob" :prob-abstract="solution.abstract" :prob-tags="solution.tags" :prob-likes="solution.likes"></AccordionTab>
 							</div>
 						</ScrollPanel>
 					</TabPanel>
@@ -61,15 +61,18 @@ import AccordionTab from "@/components/ProblemPage/AccordionTab.vue";
 import RankDropDown from "@/components/ProblemPage/RankingDropDown.vue";
 import SideBar from "@/components/Base/SideBar.vue";
 import ProblemDetail from "@/components/Base/ProblemDetailPopup.vue";
-import { reactive, ref } from "vue";
+import { reactive, ref, watchEffect } from "vue";
 export default {
-	setup() {
+	props: {
+		id: String,
+	},
+	setup(props) {
 		const tree_info = reactive({
 			parents: ["Sample Project", "problem 1", "problem 2", "problem 3"],
 			siblings: ["sibling problem 1", "sibling problem 2"],
 			thisProblem: "Some problem title",
 		});
-		const problem = reactive({
+		let problem = reactive({
 			info: {
 				id: "P0001",
 				title: "Some problem title",
@@ -170,6 +173,13 @@ export default {
 					],
 				},
 			],
+		});
+		console.log(props.id);
+		watchEffect(() => {
+			if (props.id == "sub") {
+				problem.info.id = "P0022";
+				problem.info.title = "Sub Problem";
+			}
 		});
 
 		let cardToggled = ref(false);

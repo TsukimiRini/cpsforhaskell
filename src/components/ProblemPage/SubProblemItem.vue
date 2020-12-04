@@ -1,12 +1,14 @@
 <template>
-	<div class="container">
-		<div class="subprob-title p-text-nowrap p-text-truncate">
-			<slot name="name"></slot>
+	<router-link to="/problem/sub" style="color: inherit">
+		<div class="container">
+			<div class="subprob-title p-text-nowrap p-text-truncate">
+				<slot name="name"></slot>
+			</div>
+			<div class="subprob-context p-text-nowrap p-text-truncate">
+				<slot name="content"></slot>
+			</div>
 		</div>
-		<div class="subprob-context p-text-nowrap p-text-truncate">
-			<slot name="content"></slot>
-		</div>
-	</div>
+	</router-link>
 </template>
 
 <script>
