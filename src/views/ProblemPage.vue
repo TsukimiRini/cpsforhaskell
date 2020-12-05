@@ -179,6 +179,9 @@ export default {
 			if (props.id == "sub") {
 				problem.info.id = "P0022";
 				problem.info.title = "Sub Problem";
+			} else {
+				problem.info.id = "P0001";
+				problem.info.title = "Some problem title";
 			}
 		});
 

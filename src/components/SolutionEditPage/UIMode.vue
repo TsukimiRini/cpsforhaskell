@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<div class="one-line">
-			<div class="field-name flex-align-center" style="float: none">摘要：</div>
+			<div class="field-name flex-align-center" style="float: none">概要：</div>
 			<div class="input-text-container">
 				<Textarea :autoResize="true" rows="4" style="width: 100%"></Textarea>
 			</div>
@@ -23,22 +23,15 @@
 			<div id="sourceCode"></div>
 		</div>
 		<div class="center-icon">
-			<i
-				class="pi pi-angle-double-down"
-				style="font-size: 25px; cursor: pointer"
-			></i>
+			<i class="pi pi-angle-double-down" style="font-size: 25px; cursor: pointer"></i>
 		</div>
 		<div class="one-line">
-			<div class="field-name flex-align-center" style="float: none">
-				数据类型：
-			</div>
+			<div class="field-name flex-align-center" style="float: none">数据类型：</div>
 			<TypeCard id="type1"></TypeCard>
 			<TypeCard id="type2"></TypeCard>
 		</div>
 		<div class="one-line">
-			<div class="field-name flex-align-center" style="float: none">
-				子问题：
-			</div>
+			<div class="field-name flex-align-center" style="float: none">子问题：</div>
 			<SubProbCard></SubProbCard>
 		</div>
 		<div class="one-line">

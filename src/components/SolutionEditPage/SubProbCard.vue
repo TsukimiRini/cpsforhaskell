@@ -10,10 +10,8 @@
 		<div class="one-line">
 			<div class="float-left">
 				<span>函数名：</span>
-				<InputText
-					style="width: 100px; height: 30px; margin-right: 10px"
-				></InputText>
-				<span>说明：</span>
+				<InputText style="width: 100px; height: 30px; margin-right: 10px"></InputText>
+				<span>概要：</span>
 			</div>
 
 			<div class="input-text-container">
@@ -44,9 +42,7 @@
 		</div>
 
 		<div class="one-line">
-			<div class="float-left flex-align-center" style="float: none">
-				输入输出映射：
-			</div>
+			<div class="float-left flex-align-center" style="float: none">输入输出映射：</div>
 			<div id="mappingCode"></div>
 		</div>
 
