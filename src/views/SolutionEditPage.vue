@@ -1,7 +1,11 @@
 <template>
 	<TheHeader id="theHeader">
 		<span class="navbar-title"> 开发模式 </span>
-		<i class="pi pi-bars" style="margin-left: 10px; cursor: pointer" @click="collapseOperation"></i>
+		<i
+			class="pi pi-bars"
+			style="margin-left: 10px; cursor: pointer"
+			@click="collapseOperation"
+		></i>
 	</TheHeader>
 	<ProblemDetail :problem="problem" :visible="dialogDisplay"></ProblemDetail>
 	<div @click="checkDialogDisplay">
@@ -12,11 +16,21 @@
 					<div>
 						<span>{{ problem.info.title }}</span>
 						<span>#{{ problem.info.id }}</span>
-						<Button id="problemDetailShowButton" class="info-button" style="margin-left: 5px !important" @click="dialogDisplay = !dialogDisplay">详细信息</Button>
+						<Button
+							id="problemDetailShowButton"
+							class="info-button"
+							style="margin-left: 5px !important"
+							@click="dialogDisplay = !dialogDisplay"
+							>详细信息</Button
+						>
 					</div>
 					<div>
-						<Button class="info-button" style="margin-left: 5px !important">打包为可运行项目</Button>
-						<Button class="info-button" style="margin-left: 5px !important">关注<i class="pi pi-plus" style="fontsize: 10px"></i></Button>
+						<Button class="info-button" style="margin-left: 5px !important"
+							>打包为可运行项目</Button
+						>
+						<Button class="info-button" style="margin-left: 5px !important"
+							>关注<i class="pi pi-plus" style="fontsize: 10px"></i
+						></Button>
 					</div>
 				</div>
 				<div :class="{ 'none-display': cardToggled }">
@@ -26,11 +40,16 @@
 					</div>
 					<div class="context-container">
 						<span style="font-weight: bold">签名：</span>
-						<pre style="margin: 0px 0px 0px 0px" v-highlight><code class="haskell" style="display: inline;padding: 5px 0px 5px 0px;background:0">{{problem.info.def}}</code></pre>
+						<pre
+							style="margin: 0px 0px 0px 0px"
+							v-highlight
+						><code class="haskell" style="display: inline;padding: 5px 0px 5px 0px;background:0">{{problem.info.def}}</code></pre>
 					</div>
 					<div class="context-container">
 						<span style="font-weight: bold">标签：</span>
-						<TagItem v-for="(tag, idx) in problem.info.tags" :key="idx">{{ tag }}</TagItem>
+						<TagItem v-for="(tag, idx) in problem.info.tags" :key="idx">{{
+							tag
+						}}</TagItem>
 					</div>
 				</div>
 
@@ -41,9 +60,14 @@
 
 			<div class="operate-bar">
 				<div class="align-center" style="padding: 3px 8px 3px 8px">
-					<router-link to="/solution" style="text-decoration: inherit; color: inherit; display: flex">
+					<router-link
+						to="/solution"
+						style="text-decoration: inherit; color: inherit; display: flex"
+					>
 						<i class="pi pi-angle-left" style="font-size: 20px; cursor: pointer"></i>
-						<span style="font-size: 14px" class="align-center"> 回到解决方案：分解1 </span>
+						<span style="font-size: 14px" class="align-center">
+							回到解决方案：分解1
+						</span>
 					</router-link>
 				</div>
 			</div>
@@ -53,7 +77,8 @@
 			</ScrollPanel>
 		</div>
 	</div>
-	<FindSimilar class="popover-window"></FindSimilar>
+	<!-- <FindSimilar class="popover-window"></FindSimilar> -->
+	<StatusBar style="bottom: 0; position: fixed"></StatusBar>
 </template>
 
 <script>
@@ -63,6 +88,7 @@ import SideBar from "@/components/Base/SideBar.vue";
 import SolutionEditPage from "@/components/SolutionEditPage/EditCard.vue";
 import FindSimilar from "@/components/SolutionEditPage/FindSimilar.vue";
 import ProblemDetail from "@/components/Base/ProblemDetailPopup.vue";
+import StatusBar from "@/components/SolutionEditPage/StatusBar.vue";
 export default {
 	setup() {
 		const tree_info = reactive({
@@ -119,7 +145,11 @@ export default {
 			iconClass["pi-chevron-up"] = iconClass["pi-chevron-up"] ? false : true;
 			iconClass["pi-chevron-down"] = iconClass["pi-chevron-down"] ? false : true;
 			if (cardToggled.value) {
-				scrollHeight.value = window.innerHeight - document.getElementById("theHeader").clientHeight - 110 - 44;
+				scrollHeight.value =
+					window.innerHeight -
+					document.getElementById("theHeader").clientHeight -
+					110 -
+					44;
 			} else {
 				scrollHeight.value = window.innerHeight - 56 - 250 - 44;
 			}
@@ -127,7 +157,11 @@ export default {
 
 		window.addEventListener("resize", () => {
 			if (cardToggled.value) {
-				scrollHeight.value = window.innerHeight - document.getElementById("theHeader").clientHeight - 110 - 44;
+				scrollHeight.value =
+					window.innerHeight -
+					document.getElementById("theHeader").clientHeight -
+					110 -
+					44;
 			} else {
 				scrollHeight.value = window.innerHeight - 56 - 250 - 44;
 			}
@@ -170,6 +204,7 @@ export default {
 			ProblemDetail,
 			dialogDisplay,
 			checkDialogDisplay,
+			StatusBar,
 		};
 	},
 };
