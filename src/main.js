@@ -13,6 +13,7 @@ import IconInfo from "@/components/Icons/IconInfo.vue";
 import IconFilter from "@/components/Icons/IconFilter.vue";
 import IconFavor from "@/components/Icons/IconFavor.vue";
 import IconTransfer from "@/components/Icons/IconTransfer.vue";
+import IconCancel from "@/components/Icons/IconCancel.vue";
 
 // plugins
 import Highlight from '@/tools/highlight.js';
@@ -73,6 +74,7 @@ app.component('IconInfo', IconInfo);
 app.component('IconFilter', IconFilter);
 app.component('IconFavor', IconFavor);
 app.component('IconTransfer', IconTransfer);
+app.component('IconCancel', IconCancel);
 
 app.component('Button', Button);
 app.component('Menubar', Menubar);

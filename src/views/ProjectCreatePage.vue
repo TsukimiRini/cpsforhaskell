@@ -10,14 +10,16 @@
 			</div>
 			<div>
 				<div class="section-title">管理信息</div>
+				<AdminCard></AdminCard>
 			</div>
 		</div>
 	</ScrollPanel>
 </template>
 
 <script>
-import DefCard from "@/components/ProjectCreatePage/DefinitionCard.vue";
 import { ref } from "vue";
+import DefCard from "@/components/ProjectCreatePage/DefinitionCard.vue";
+import AdminCard from "@/components/ProjectCreatePage/AdminInfoCard.vue";
 export default {
 	setup() {
 		let scrollHeight = ref(0);
@@ -25,6 +27,7 @@ export default {
 		return {
 			DefCard,
 			scrollHeight,
+			AdminCard,
 		};
 	},
 };
