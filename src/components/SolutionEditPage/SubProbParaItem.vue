@@ -2,7 +2,7 @@
 	<div class="parameter-container">
 		<div class="one-line">
 			<div class="float-left">
-				<span>类型名：</span>
+				<span>类型：</span>
 				<InputText style="width: 100px; height: 30px; margin-right: 10px"></InputText>
 				<span>说明：</span>
 			</div>

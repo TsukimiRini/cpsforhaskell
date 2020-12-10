@@ -6,6 +6,7 @@ import HomePage from "@/views/HomePagePanel.vue";
 import ProblemPage from "@/views/ProblemPage.vue";
 import SolutionPage from "@/views/SolutionInfoPage.vue";
 import SolutionEditPage from "@/views/SolutionEditPage";
+import CreateProjectPage from "@/views/ProjectCreatePage.vue";
 
 const routes = [{
         path: "/",
@@ -26,6 +27,10 @@ const routes = [{
     {
         path:"/edit-solution",
         component:SolutionEditPage,
+    },
+    {
+        path:"/create-project",
+        component:CreateProjectPage,
     },
 ];
 
