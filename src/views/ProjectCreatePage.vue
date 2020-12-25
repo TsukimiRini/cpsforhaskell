@@ -12,6 +12,9 @@
 				<div class="section-title">管理信息</div>
 				<AdminCard></AdminCard>
 			</div>
+			<div class="put-center">
+				<Button label="完成" icon="pi pi-check" />
+			</div>
 		</div>
 	</ScrollPanel>
 </template>
@@ -40,5 +43,12 @@ export default {
 }
 .section-title {
 	font-size: 28px;
+}
+
+.put-center {
+	display: flex;
+	justify-items: center;
+	justify-content: center;
+	margin-top: 20px;
 }
 </style>

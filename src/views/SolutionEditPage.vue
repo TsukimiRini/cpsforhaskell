@@ -78,7 +78,7 @@
 		</div>
 	</div>
 	<!-- <FindSimilar class="popover-window"></FindSimilar> -->
-	<StatusBar style="bottom: 0; position: fixed"></StatusBar>
+	<!-- <StatusBar style="bottom: 0; position: fixed"></StatusBar> -->
 </template>
 
 <script>
@@ -88,7 +88,7 @@ import SideBar from "@/components/Base/SideBar.vue";
 import SolutionEditPage from "@/components/SolutionEditPage/EditCard.vue";
 import FindSimilar from "@/components/SolutionEditPage/FindSimilar.vue";
 import ProblemDetail from "@/components/Base/ProblemDetailPopup.vue";
-import StatusBar from "@/components/SolutionEditPage/StatusBar.vue";
+// import StatusBar from "@/components/SolutionEditPage/StatusBar.vue";
 export default {
 	setup() {
 		const tree_info = reactive({
@@ -204,7 +204,7 @@ export default {
 			ProblemDetail,
 			dialogDisplay,
 			checkDialogDisplay,
-			StatusBar,
+			// StatusBar,
 		};
 	},
 };

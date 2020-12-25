@@ -3,19 +3,43 @@
 		<div class="one-line">
 			<div class="float-left">
 				<span>类型：</span>
-				<InputText style="width: 100px; height: 30px; margin-right: 10px"></InputText>
+				<InputText
+					style="width: 100px; height: 30px; margin-right: 10px"
+					v-model="typeData"
+				></InputText>
 				<span>说明：</span>
 			</div>
 
 			<div class="input-text-container">
-				<InputText class="input-text-one-line"></InputText>
+				<InputText class="input-text-one-line" v-model="descData"></InputText>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+export default {
+	props: {
+		type: {
+			type: String,
+			default: "",
+		},
+		desc: {
+			type: String,
+			default: "",
+		},
+	},
+	setup(props) {
+		let typeData = ref(props.type);
+		let descData = ref(props.desc);
+
+		return {
+			typeData,
+			descData,
+		};
+	},
+};
 </script>
 
 <style scoped>

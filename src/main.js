@@ -17,6 +17,9 @@ import IconCancel from "@/components/Icons/IconCancel.vue";
 
 // plugins
 import Highlight from '@/tools/highlight.js';
+import VMdEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
 
 // UI library
 import Button from 'primevue/button';
@@ -37,6 +40,7 @@ import Textarea from 'primevue/textarea';
 import Chips from 'primevue/chips';
 import Editor from 'primevue/editor';
 import Dialog from 'primevue/dialog';
+import AutoComplete from 'primevue/autocomplete';
 
 // css
 import '@/assets/css/theme.css';
@@ -44,6 +48,7 @@ import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 
+VMdEditor.use(githubTheme);
 const app = createApp(App);
 app.component('TheHeader', TheHeader);
 app.directive("click-outside", {
@@ -94,7 +99,9 @@ app.component('Textarea', Textarea);
 app.component('Chips', Chips);
 app.component('Editor', Editor);
 app.component('Dialog', Dialog);
+app.component('AutoComplete', AutoComplete);
 
 app.use(Highlight);
+app.use(VMdEditor);
 
 app.use(Router).mount('#app');

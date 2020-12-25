@@ -3,19 +3,22 @@
 		<div class="one-line">
 			<div class="float-left flex-align-center">问题名：</div>
 			<div class="input-text-container">
-				<InputText class="input-text-one-line"></InputText>
+				<InputText class="input-text-one-line" v-model="title"></InputText>
 			</div>
 		</div>
 
 		<div class="one-line">
 			<div class="float-left">
 				<span>函数名：</span>
-				<InputText style="width: 100px; height: 30px; margin-right: 10px"></InputText>
+				<InputText
+					style="width: 100px; height: 30px; margin-right: 10px"
+					v-model="funcName"
+				></InputText>
 				<span>概要：</span>
 			</div>
 
 			<div class="input-text-container">
-				<InputText class="input-text-one-line"></InputText>
+				<InputText class="input-text-one-line" v-model="desc"></InputText>
 			</div>
 		</div>
 
@@ -29,15 +32,19 @@
 		<div class="one-line">
 			<div style="margin-bottom: 10px">输入：</div>
 			<div class="input-text-container">
-				<ParaItem></ParaItem>
-				<ParaItem></ParaItem>
+				<ParaItem
+					v-for="idx in inputsLen"
+					:key="idx"
+					:type="inputs[idx - 1].type"
+					:desc="inputs[idx - 1].desc"
+				></ParaItem>
 			</div>
 		</div>
 
 		<div class="one-line">
 			<div style="margin-bottom: 10px">输出：</div>
 			<div class="input-text-container">
-				<ParaItem></ParaItem>
+				<ParaItem :type="output.type" :desc="output.desc"></ParaItem>
 			</div>
 		</div>
 
@@ -48,7 +55,7 @@
 
 		<div class="one-line">
 			<div style="margin-bottom: 10px">备注：</div>
-			<Editor v-model="note" editorStyle="height: 200px">
+			<!-- <Editor v-model="note" editorStyle="height: 200px">
 				<template #toolbar>
 					<span class="ql-formats">
 						<button class="ql-bold"></button>
@@ -56,7 +63,8 @@
 						<button class="ql-underline"></button>
 					</span>
 				</template>
-			</Editor>
+			</Editor> -->
+			<v-md-editor v-model="note" height="300px" mode="edit"></v-md-editor>
 		</div>
 	</div>
 </template>
@@ -70,24 +78,39 @@ import "ace-builds/webpack-resolver";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/mode-haskell";
 export default {
-	setup() {
-		let tags = ref(null);
-		let note = ref(null);
+	props: {
+		subProb: Object,
+	},
+	setup(props) {
+		let title = ref(props.subProb.title);
+		let desc = ref(props.subProb.desc);
+		let funcName = ref(props.subProb.funcName);
+		let tags = ref(props.subProb.tags);
+		let note = ref(props.subProb.notes);
+		let inputs = ref(props.subProb.inputs);
+		let inputsLen = ref(props.subProb.inputs.length);
+		let output = ref(props.subProb.output);
 
 		var mapping_editor = reactive({});
 		onMounted(() => {
 			mapping_editor = ace.edit("mappingCode", {
 				maxLines: 10,
 				minLines: 10,
-				value: "",
+				value: props.subProb.mapping,
 				mode: "ace/mode/haskell",
 			});
 		});
 		return {
+			title,
+			desc,
+			funcName,
 			tags,
 			ParaItem,
 			note,
 			mapping_editor,
+			inputs,
+			inputsLen,
+			output,
 		};
 	},
 };

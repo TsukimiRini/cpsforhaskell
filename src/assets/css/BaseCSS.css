@@ -54,3 +54,7 @@ code {
 .ace_editor{
     border: 1px solid #c7cbce !important;
 }
+
+.v-md-editor{
+    border: 1px solid #bfbfbf;
+}

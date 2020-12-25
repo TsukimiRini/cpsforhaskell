@@ -3,12 +3,15 @@
 		<div class="one-line">
 			<div class="float-left">
 				<span>类型名：</span>
-				<InputText style="width: 100px; height: 30px; margin-right: 10px"></InputText>
+				<InputText
+					style="width: 100px; height: 30px; margin-right: 10px"
+					v-model="typeData"
+				></InputText>
 				<span>说明：</span>
 			</div>
 
 			<div class="input-text-container">
-				<InputText class="input-text-one-line"></InputText>
+				<InputText class="input-text-one-line" v-model="descData"></InputText>
 			</div>
 		</div>
 
@@ -18,7 +21,7 @@
 </template>
 
 <script>
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import ace from "ace-builds";
 import "ace-builds/webpack-resolver";
 import "ace-builds/src-noconflict/theme-monokai";
@@ -29,6 +32,18 @@ export default {
 			type: String,
 			default: "type",
 		},
+		type: {
+			type: String,
+			default: "",
+		},
+		desc: {
+			type: String,
+			default: "",
+		},
+		srcCode: {
+			type: String,
+			default: "",
+		},
 	},
 	setup(props) {
 		var type_editor = reactive({});
@@ -36,13 +51,18 @@ export default {
 			type_editor = ace.edit(props.id, {
 				maxLines: 5,
 				minLines: 5,
-				value: "",
+				value: props.srcCode,
 				mode: "ace/mode/haskell",
 			});
 		});
 
+		let descData = ref(props.desc);
+		let typeData = ref(props.type);
+
 		return {
 			type_editor,
+			descData,
+			typeData,
 		};
 	},
 };

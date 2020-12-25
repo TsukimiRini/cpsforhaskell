@@ -83,6 +83,9 @@
   padding: 0;
   margin: 0;
 }
+.p-inputtext{
+  width: 100%;
+}
 .p-autocomplete.p-autocomplete-multiple .p-autocomplete-multiple-container .p-autocomplete-token {
   padding: 0.25rem 0.5rem;
   margin-right: 0.5rem;
